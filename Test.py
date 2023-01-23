@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
+# In[11]:
 
 
 import numpy as np
@@ -20,13 +20,13 @@ t = np.linspace(0, 1, num=100, endpoint=True)
 x=np.sin(Moda*t)
 y=np.sin(Modb*t)
 
-plt.plot(x,y)
+figure, axes = plt.subplots()
+axes.plot(x,y)
+st.write(figure)
 
 
 # In[ ]:
 
 
-st.title("Testing out Push to GitHub and Streamlit app")
 
-st.write("Lissajous Curve")
 
