@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
+# In[7]:
 
 
 import numpy as np
@@ -13,8 +13,8 @@ st.title("Testing out Push to GitHub and Streamlit app")
 st.write("Lissajous Curve")
 
 
-Moda = st.slider("Pick Value for a", 1, 10, 3)
-Modb = st.slider("Pick Value for a", 1, 10, 3)
+Moda = st.slider("Pick Value for a", 1, 10, 3, key = "<one>")
+Modb = st.slider("Pick Value for b", 1, 10, 3, key = "<two>")
 t = np.linspace(0, 1, num=100, endpoint=True)
 
 x=np.sin(Moda*t)
