@@ -7,6 +7,7 @@
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
+from Koch import *
 
 st.title("Testing out Push to GitHub and Streamlit app")
 
@@ -23,6 +24,20 @@ y=np.sin(Modb*t)
 figure, axes = plt.subplots()
 axes.plot(x,y)
 st.write(figure)
+
+''''''
+
+st.header("Koch Snowflake")
+st.write('koch snowflake')
+
+ord = st.slider("Pick Order of Snowflake", 1, 8, 3, key = "<three>")
+
+x, y = koch_snowflake(order=ord)
+
+plot = plt.figure(figsize=(8, 8))
+plt.axis('equal')
+plt.fill(x, y)
+st.write(plot)
 
 
 # In[ ]:
