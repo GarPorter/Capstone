@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.set_page_config(page_title='Welcome')
+
 st.title('Welcome to our Capstone Project')
 st.write('''The world is interconnected with complex feedback. Engineered systems, however, usually work on a
 fixed time index. Leveraging 3D printing, number theory, and control engineering, this project will
