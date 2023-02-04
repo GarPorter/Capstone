@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from Computations.Koch import *
 
 # Resets Chaos Game if it is populated
-if st.session_state['x'] != 0:
+if 'x' in st.session_state and st.session_state['x'] != 0:
   st.session_state['x'] = [0]
   st.session_state['y'] = [0]
 

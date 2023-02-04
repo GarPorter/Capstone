@@ -2,7 +2,7 @@ import streamlit as st
 from st_pages import Page, show_pages
 
 # Resets Chaos Game if it is populated
-if st.session_state['x'] != 0:
+if 'x' in st.session_state and st.session_state['x'] != 0:
   st.session_state['x'] = [0]
   st.session_state['y'] = [0]
 
