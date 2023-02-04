@@ -7,7 +7,7 @@
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
-from Koch import *
+from Computations.Koch import *
 
 st.title("Testing out Push to GitHub and Streamlit app")
 
@@ -39,6 +39,7 @@ plt.axis('equal')
 plt.fill(x, y)
 st.write(plot)
 
+''''''
 
 # In[ ]:
 
