@@ -1,16 +1,14 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
 from Computations.Koch import *
 
-st.title("Testing out Push to GitHub and Streamlit app")
+# Resets Chaos Game if it is populated
+if st.session_state['x'] != 0:
+  st.session_state['x'] = [0]
+  st.session_state['y'] = [0]
 
+st.title("Testing out Push to GitHub and Streamlit app")
 st.write("Lissajous Curve")
 
 
@@ -40,9 +38,3 @@ plt.fill(x, y)
 st.write(plot)
 
 ''''''
-
-# In[ ]:
-
-
-
-

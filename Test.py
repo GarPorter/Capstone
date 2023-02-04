@@ -1,6 +1,21 @@
 import streamlit as st
+from st_pages import Page, show_pages
 
-st.set_page_config(page_title='Welcome')
+# Resets Chaos Game if it is populated
+if st.session_state['x'] != 0:
+  st.session_state['x'] = [0]
+  st.session_state['y'] = [0]
+
+# Specify what pages should be shown in the sidebar, and what their titles
+# and icons should be
+show_pages(
+    [
+        Page("Test.py", " Welcome", ":house:"),
+        Page("pages/Main_Page.py", " Main Page", ":computer:"),
+        Page("pages/The_Chaos_Game.py", " Chaos Game", ":space_invader:"),
+    ]
+)
+
 
 st.title('Welcome to our Capstone Project')
 st.write('''The world is interconnected with complex feedback. Engineered systems, however, usually work on a

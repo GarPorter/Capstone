@@ -2,6 +2,7 @@ import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
 
+# Initialize x and y arrays to zero
 if 'x' and 'y' not in st.session_state:
   st.session_state['x'] = [0]
   st.session_state['y'] = [0]
@@ -21,6 +22,8 @@ a, b = 0, 0
 
 col = st.columns([4, 6, 3, 3, 3, 6, 4])
 
+# When 1000x is pressed choose random vertex and plot a point halfway to it
+# Iterate 1000 times
 with col[0]:
   if st.button('1000x'):
     for i in range(1000):
@@ -34,21 +37,28 @@ with col[0]:
       x.append(a)
       y.append(b)
 
+# When A is pressed plot a point halfway between A and previous point
 with col[2]:
   if st.button('A'):
     a, b = (-3-x[-1])/2 + x[-1], (0-y[-1])/2 + y[-1]
     x.append(a)
     y.append(b)
+
+# When B is pressed plot a point halfway between B and previous point
 with col[3]:
   if st.button('B'):
     a, b = (0-x[-1])/2 + x[-1], (3/np.sqrt(3)-y[-1])/2 + y[-1]
     x.append(a)
     y.append(b)
+
+# When C is pressed plot a point halfway between C and previous point
 with col[4]:
   if st.button('C'):
     a, b = (3-x[-1])/2 + x[-1], (0-y[-1])/2 + y[-1]
     x.append(a)
     y.append(b)
+
+# When Clear is pressed remove all points
 with col[6]:
   if st.button('Clear'):
     st.session_state['x'] = [0]
