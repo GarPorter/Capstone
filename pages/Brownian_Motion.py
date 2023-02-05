@@ -8,11 +8,11 @@ st.write('''Brownian motion aims to quantify the random motion of particles
             the motion of a particle through a medium''')
 
 
-Modb = st.slider("Pick Value for b", 1, 10, 3, key = "<four>")
+Modb = st.slider("Pick Value for b", 100, 500, 250, key = "<four>")
 
 
-x=np.random.normal(0,1,Modb)
-y=np.random.normal(0,1,Modb)
+x=np.random.normal(0,5,Modb)
+y=np.random.normal(0,5,Modb)
 
 figure, axes = plt.subplots()
 axes.plot(x,y)
