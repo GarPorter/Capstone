@@ -10,6 +10,7 @@ st.write('''Brownian motion aims to quantify the random motion of particles
 
 Modb = st.slider("Pick Value for b", 1, 10, 3, key = "<four>")
 
+
 x=np.random.normal(0,1,Modb)
 y=np.random.normal(0,1,Modb)
 
