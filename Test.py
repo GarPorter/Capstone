@@ -1,11 +1,6 @@
 import streamlit as st
 from st_pages import Page, show_pages
 
-# Resets Chaos Game if it is populated
-if 'x' in st.session_state and st.session_state['x'] != 0:
-  st.session_state['x'] = [0]
-  st.session_state['y'] = [0]
-
 # Specify what pages should be shown in the sidebar, and what their titles
 # and icons should be
 show_pages(
