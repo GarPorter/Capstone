@@ -13,6 +13,7 @@ show_pages(
         Page("Test.py", " Welcome", ":house:"),
         Page("pages/Main_Page.py", " Main Page", ":computer:"),
         Page("pages/The_Chaos_Game.py", " Chaos Game", ":space_invader:"),
+        Page("pages/Brownian_Motion.py", "Brownian", ":car:")
     ]
 )
 
