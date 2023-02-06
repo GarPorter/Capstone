@@ -3,11 +3,6 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from Computations.Koch import *
 
-# Resets Chaos Game if it is populated
-if 'x' in st.session_state and st.session_state['x'] != 0:
-  st.session_state['x'] = [0]
-  st.session_state['y'] = [0]
-
 st.title("Testing out Push to GitHub and Streamlit app")
 st.write("Lissajous Curve")
 
