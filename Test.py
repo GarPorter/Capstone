@@ -9,7 +9,7 @@ show_pages(
         Page("pages/Main_Page.py", " Main Page", ":computer:"),
         Page("pages/The_Chaos_Game.py", " Chaos Game", ":space_invader:"),
         Page("pages/Brownian_Motion.py", "Brownian", ":car:"),
-        Page("pages/Voronoi.py", "Voronoi", ":map:")
+        Page("pages/Voronoi.py", "Voronoi", ":world_map:")
     ]
 )
 
