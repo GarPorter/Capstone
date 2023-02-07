@@ -2,3 +2,4 @@ matplotlib
 numpy
 streamlit
 st_pages
+scipy
