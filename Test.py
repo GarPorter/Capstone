@@ -5,11 +5,12 @@ from st_pages import Page, show_pages
 # and icons should be
 show_pages(
     [
-        Page("Test.py", " Welcome", ":house:"),
-        Page("pages/Main_Page.py", " Main Page", ":computer:"),
-        Page("pages/The_Chaos_Game.py", " Chaos Game", ":space_invader:"),
+        Page("Test.py", "Welcome", ":house:"),
+        Page("pages/Main_Page.py", "Main Page", ":computer:"),
+        Page("pages/The_Chaos_Game.py", "Chaos Game", ":space_invader:"),
         Page("pages/Brownian_Motion.py", "Brownian", ":car:"),
-        Page("pages/Voronoi.py", "Voronoi", ":world_map:")
+        Page("pages/Voronoi.py", "Voronoi", ":world_map:"),
+        Page("pages/Meanders.py", "Meanders", ":desert_island:")
     ]
 )
 
