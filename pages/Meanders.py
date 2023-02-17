@@ -19,7 +19,7 @@ the distributed inductance and capacitance of the open meander curve can be adju
 changing the size and shape of the segments, making it a highly customizable component.
 ''')
 
-pt = st.slider("Number of Points", 1, 12, 3)
+pt = st.slider("Number of Points", 2, 10, 3)
 
 plot = createPlot(pt)
 

@@ -3,13 +3,17 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d as inter
 import random
 
+def f(arr):
+  g=arr[int(np.random.rand()*(len(arr)))]
+  return g
+
 def createPlot(pt):
   plot = plt.figure(figsize=(8, 8))
 
   # Creates the intersection points and horizontal line
-  pts=[0.05*i + x - 6 for i, x in enumerate(sorted(random.sample(range(12), pt)))]
+  pts=[0.05*i + x - 5 for i, x in enumerate(sorted(random.sample(range(10), pt)))]
   for x in pts: plt.scatter(x, 0, s=20, c='#FF0000', zorder=3)
-  plt.plot((-6, 6), (0, 0), 'gray', zorder=2)
+  plt.plot((-5, 5), (0, 0), 'gray', zorder=2)
   pts.sort()
   plt.xticks([])
   plt.yticks([])
@@ -18,10 +22,6 @@ def createPlot(pt):
   arr=list(range(1, pt))
   ord=[0]
   i=0
-
-  def f(arr):
-    g=arr[int(np.random.rand()*(len(arr)))]
-    return g
 
   # Creates the array ord which is the order of the intersections
   while len(arr) > 0:
