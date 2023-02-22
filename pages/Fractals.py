@@ -23,7 +23,7 @@ def largeRight(x,y):
     return(-0.15*x + 0.28*y, 0.26*x + 0.24*y + 0.44)
 functions = [stem, leaflets, largeLeft, largeRight]
 st.write('How much transformations do you want your leaf to undergo?')
-iterations = st.slider('Iterations?', 100, 100000, 1000)
+iterations = st.slider('Iterations?', 100, 100000, 50000)
 x, y = 0, 0
 x_list = []
 y_list = []
