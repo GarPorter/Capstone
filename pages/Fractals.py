@@ -4,8 +4,14 @@ import streamlit as st
 
 st.title('Creating art from fractals')
 st.write('''
-Fractals are found in nature...
+The Barnsley fern shows how graphically beautiful structures can be built from repetitive uses of mathematical formulas with computers.
+In this demonstration, a fern is created by iterating a transformation of a point at a very high volume until you ultimatley end up
+with a fern that replicates those found in nature.
+
+Take a chance and try it out for yourself!
 ''')
+
+colorUser = st.color_picker('Pick A Color for your fern', '#00f900')
 
 def stem(x,y):
     return (0., 0.16*y)
@@ -16,8 +22,8 @@ def largeLeft(x,y):
 def largeRight(x,y):
     return(-0.15*x + 0.28*y, 0.26*x + 0.24*y + 0.44)
 functions = [stem, leaflets, largeLeft, largeRight]
-
-iterations = 50000
+st.write('How much transformations do you want your leaf to undergo?')
+iterations = st.slider('Iterations?', 100, 100000, 1000)
 x, y = 0, 0
 x_list = []
 y_list = []
@@ -27,6 +33,10 @@ for i in range(iterations):
     x_list.append(x)
     y_list.append(y)
 
-figure = plt.scatter(x_list,y_list, color = 'green')
+plot = plt.figure(figsize=(8, 8))
+plt.scatter(x_list, y_list, color = colorUser, s = 0.25)
+st.write(plot)
 
-st.pyplot(figure)
+st.write('''
+For more information on the math involved and other applications of this phenomenon, visit https://en.wikipedia.org/wiki/Barnsley_fern
+''')
