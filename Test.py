@@ -10,7 +10,8 @@ show_pages(
         Page("pages/The_Chaos_Game.py", "Chaos Game", ":space_invader:"),
         Page("pages/Brownian_Motion.py", "Brownian", ":car:"),
         Page("pages/Voronoi_script.py", "Voronoi", ":world_map:"),
-        Page("pages/Meanders.py", "Meanders", ":desert_island:")
+        Page("pages/Meanders.py", "Meanders", ":desert_island:"),
+        Page("pages/Fractals.py", "Fractals", ":herb:")
     ]
 )
 
