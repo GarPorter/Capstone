@@ -3,5 +3,4 @@ numpy
 streamlit
 st_pages
 scipy
-turtle
-tkinter
+PythonTurtle
