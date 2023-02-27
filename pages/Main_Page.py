@@ -1,9 +1,9 @@
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
-from Computations.Fibonacci import fibo
+# from Computations.Fibonacci import fibo
 from Computations.Koch import *
-import multiprocessing as mp
+# import multiprocessing as mp
 
 st.title("Testing out Push to GitHub and Streamlit app")
 st.write("Lissajous Curve")
@@ -57,20 +57,20 @@ st.write(plot)
 
 ''''''
 
-click = st.button('Paint')
+# click = st.button('Paint')
 
-def genFibo(n):
-    nums = [1, 1]
-    n=n-2
-    while n > 0:
-        nums.append(nums[-1]+nums[-2])
-        n=n-1
-    return nums
+# def genFibo(n):
+#     nums = [1, 1]
+#     n=n-2
+#     while n > 0:
+#         nums.append(nums[-1]+nums[-2])
+#         n=n-1
+#     return nums
 
-n = st.slider('Pick n Fibonacci Numbers', 2, 15, 9)
+# n = st.slider('Pick n Fibonacci Numbers', 2, 15, 9)
 
-fibo_nr = genFibo(n)  #Fibonacci numbers this could be calculated instead
-t = mp.Process(target=fibo, args=([fibo_nr]))
+# fibo_nr = genFibo(n)  #Fibonacci numbers this could be calculated instead
+# t = mp.Process(target=fibo, args=([fibo_nr]))
 
-if click:
-    t.start()
+# if click:
+#     t.start()
