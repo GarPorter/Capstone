@@ -4,3 +4,4 @@ streamlit
 st_pages
 scipy
 PythonTurtle
+tkinter
