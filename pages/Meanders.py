@@ -1,5 +1,6 @@
 import streamlit as st
 from Computations.MeandersAlgo import *
+import matplotlib.pyplot as plt
 
 st.title('Open Meander Curves')
 st.write('''
@@ -7,8 +8,10 @@ Open meander curves are a type of curved pattern that is often used in electroni
 circuits to create inductance, impedance, or a path for current flow. The open meander
 curve consists of a series of alternating segments, each of which is a quarter or half-wavelength long,
 depending on the desired frequency of operation. In this example, the curve intersects
-a horizontal line n times and is self avoiding (ie. does not intersect itself).
+a horizontal line n times and is self avoiding (ie. does not intersect itself).''')
 
+st.subheader('Application')
+st.write('''
 The alternating segments of the open meander curve create a pattern that appears to
 "meander" or zigzag back and forth along the length of the curve. This pattern
 creates a distributed inductance and capacitance that affects the behavior of a
@@ -19,8 +22,11 @@ the distributed inductance and capacitance of the open meander curve can be adju
 changing the size and shape of the segments, making it a highly customizable component.
 ''')
 
+st.subheader('Try it Yourself!')
 pt = st.slider("Number of Points", 2, 10, 3)
 
 plot = createPlot(pt)
 
 st.write(plot)
+
+plt.close()

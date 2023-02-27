@@ -8,6 +8,7 @@ def f(arr):
   return g
 
 def createPlot(pt):
+  plt.close()
   plot = plt.figure(figsize=(8, 8))
 
   # Creates the intersection points and horizontal line

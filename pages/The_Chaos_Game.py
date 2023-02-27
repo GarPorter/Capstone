@@ -15,7 +15,19 @@ st.write('''The Chaos Game is a method of generating fractal patterns using a
  simple set of rules. It involves randomly selecting a point on a plane and then
  repeatedly applying a simple transformation to it, such as plotting another point
  at half the distance to a selected vertex in an equilateral triangle. The result
- is the Sierpinski Triangle. Try it yourself!''')
+ is the Sierpinski Triangle.''')
+
+st.subheader('Application')
+st.write('''
+ The Sierpinski triangle's unique self-similar properties make it a valuable tool
+ in image compression. By using the triangle to represent an image as a set of triangles,
+ the process can be lossless, scalable, and computationally efficient. Dividing the image
+ into small blocks, each is compared to similar domain blocks until the best match
+ is found and transformed recursively. This fractal compression technique enables
+ the image to be stored and transferred more efficiently. The simplicity and
+ versatility of the Sierpinski triangle make it an ideal tool for image compression.''')
+
+st.subheader('Try it Yourself!')
 st.write('Pick a random Vertex or skip forward 1000 steps')
 
 a, b = 0, 0
