@@ -4,5 +4,5 @@ streamlit
 st_pages
 scipy
 PythonTurtle
-Time
 PIL
+time
