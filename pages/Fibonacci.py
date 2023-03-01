@@ -32,8 +32,6 @@ st.write('''The Fibonacci spiral can be used in wind turbine design to optimize 
 st.subheader('Try it Yourself!')
 nums = st.slider('Number of Fibonacci Numbers', 2, 15, 5)
 
-clicked = st.button('Create Spriral')
-
 # Generates the first n Fibonacci numbers in an array
 # Param: n (int) numbers to generate
 # Returns: nums (array) array of fibonacci numbers
