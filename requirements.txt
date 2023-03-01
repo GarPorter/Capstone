@@ -5,4 +5,4 @@ st_pages
 scipy
 PythonTurtle
 Pillow
-time
+python-time
