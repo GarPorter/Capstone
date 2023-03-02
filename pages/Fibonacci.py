@@ -96,7 +96,8 @@ p1 = (1, 1)
 
 # Plotting curve
 for i in range(len(fa)):
-# alternate between - +, - -, + -, + +
+  time.sleep(0.25)
+  # alternate between - +, - -, + -, + +
   if i % 4 == 0:
     p2 = (p1[0]-fa[i], p1[1]+fa[i])
   elif i % 4 == 1:
