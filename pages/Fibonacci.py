@@ -96,6 +96,7 @@ p1 = (1, 1)
 
 # Plotting curve
 for i in range(len(fa)):
+  time.sleep(0.25)
 # alternate between - +, - -, + -, + +
   if i % 4 == 0:
     p2 = (p1[0]-fa[i], p1[1]+fa[i])
@@ -122,6 +123,7 @@ for i in range(len(fa)):
 
   ax.add_patch(pp1)
   the_plot.pyplot(plt)
+
 
 st.subheader('Examples')
 img = Image.open('Images/Fibonacci_Spiral.png')
