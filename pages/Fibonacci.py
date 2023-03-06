@@ -124,7 +124,6 @@ for i in range(len(fa)):
   ax.add_patch(pp1)
   the_plot.pyplot(plt)
 
-
-st.subheader('Examples')
-img = Image.open('Images/Fibonacci_Spiral.png')
-st.image(img, caption='Fibonacci Sprial of order 8')
+  # st.subheader('Examples')
+  # img = Image.open('Images/Fibonacci_Spiral.png')
+  # st.image(img, caption='Fibonacci Sprial of order 8')
