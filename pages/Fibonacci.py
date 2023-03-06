@@ -108,7 +108,7 @@ for i in range(len(fa)):
     p2 = (p1[0]+fa[i], p1[1]+fa[i])
 
   # for p3 alternate between (p1[0], p2[1]) and (p2[0], p1[1])
-  # 1.03 makes the curves smoother
+  # (1.03 makes the spiral smoother)
   if i % 2 == 0:
     p3 = (p1[0]/1.03, p2[1]/1.03)
   else:
@@ -124,6 +124,8 @@ for i in range(len(fa)):
   ax.add_patch(pp1)
   the_plot.pyplot(plt)
 
-# st.subheader('Examples')
-# img = Image.open('Images/Fibonacci_Spiral.png')
-# st.image(img, caption='Fibonacci Sprial of order 8')
+# Adds example and removes fade when reloading
+st.markdown("<style>.element-container{opacity:1 !important}</style>", unsafe_allow_html=True)
+st.subheader('Examples')
+img = Image.open('Images/Fibonacci_Spiral.png')
+st.image(img, caption='Fibonacci Sprial of order 8')
