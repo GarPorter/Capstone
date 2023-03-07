@@ -18,7 +18,7 @@ creates a distributed inductance and capacitance that affects the behavior of a
 signal passing through the curve. They are are commonly used in radio frequency (RF)
 circuits, particularly for creating filters, resonators, and other RF components.
 They are compact and can be easily integrated into the layout of a circuit. Additionally,
-the distributed inductance and capacitance of the open meander curve can be adjusted by
+the distributed inductance and capacitance of the meander line can be adjusted by
 changing the size and shape of the segments, making it a highly customizable component.
 ''')
 
@@ -30,3 +30,10 @@ plot = createPlot(pt)
 st.write(plot)
 
 plt.close()
+
+st.subheader('References')
+st.write('''
+- https://iopscience.iop.org/article/10.7567/JJAP.52.05DC08
+- https://www.researchgate.net/figure/Parasitic-capacitances-in-meander-lines_fig8_224610758
+- https://ieeexplore.ieee.org/document/6545045
+''')

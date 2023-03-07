@@ -49,8 +49,18 @@ ord = st.slider("Pick Order of Snowflake", 1, 8, 3, key = "<three>")
 x, y = koch_snowflake(order=ord)
 
 plot = plt.figure(figsize=(8, 8))
+plt.xticks([])
+plt.yticks([])
 plt.axis('equal')
 plt.fill(x, y)
 st.write(plot)
 
 ''''''
+
+st.subheader('References')
+st.write('''
+- https://en.wikipedia.org/wiki/Koch_snowflake
+- https://www.nointrigue.com/docs/notes/uni/tspwater/mytalk.pdf
+- https://sites.google.com/a/maret.org/advanced-math-7-final-project-2014/architecture-and-arts/fractals-koch-snowflake
+- https://www.ijert.org/research/analysis-of-koch-snowflake-fractal-antenna-for-multiband-application-IJERTV3IS041857.pdf
+''')

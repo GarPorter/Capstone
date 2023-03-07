@@ -22,15 +22,13 @@ st.subheader('Application')
 st.write('''The Fibonacci spiral can be used in wind turbine design to optimize the shape,
  length, and angle of the blades, which can improve the efficiency and performance of the
    turbine. By using the Fibonacci sequence and spiral, engineers can create blade shapes
-     that have a gradual taper, reducing drag and improving energy capture. The length and
-       angle of attack of the blades can also be determined using the Fibonacci sequence,
-         resulting in a blade shape that is optimized for different wind speeds. Additionally,
-           the Fibonacci spiral can be used to optimize the placement and orientation of wind
-             turbines in a wind farm, maximizing the energy output while minimizing interference.''')
+     that have a gradual taper, versus a parabolic, reducing drag and improving energy capture.
+       The length and angle of attack of the blades can also be determined using the Fibonacci sequence,
+         resulting in a blade shape that is optimized for different wind speeds.''')
 
 
 st.subheader('Try it Yourself!')
-nums = st.slider('Number of Fibonacci Numbers', 2, 15, 5)
+nums = st.slider('Number of Fibonacci Numbers', 2, 15, 4)
 
 # Generates the first n Fibonacci numbers in an array
 # Param: n (int) numbers to generate
@@ -129,3 +127,6 @@ st.markdown("<style>.element-container{opacity:1 !important}</style>", unsafe_al
 st.subheader('Examples')
 img = Image.open('Images/Fibonacci_Spiral.png')
 st.image(img, caption='Fibonacci Sprial of order 8')
+
+st.subheader("References")
+st.write('- https://re.public.polimi.it/retrieve/33b5ac84-9ff6-4845-b0b2-cb2d3ae59f00/BLANJ02-22.pdf')

@@ -88,3 +88,9 @@ plt.scatter(x, y, s=4)
 plt.xticks([])
 plt.yticks([])
 st.write(plot)
+
+st.subheader('References')
+st.write('''
+- https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-ipr.2019.0489
+- https://www-users.york.ac.uk/~ss44/complex/compress.htm
+''')
