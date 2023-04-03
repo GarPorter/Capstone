@@ -37,6 +37,7 @@ with c2:
   if st.button('Print'):
     clicked = True
     st.session_state.plot.savefig('SVG/Meander.svg', format='svg', dpi=100)
+    st.image('SVG/Meander.svg')
     getPoints('SVG/Meander.svg')
 
 # Column containing plot.
