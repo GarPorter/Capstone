@@ -6,3 +6,6 @@ scipy
 PythonTurtle
 Pillow
 python-time
+bleak
+svgpathtools
+asyncio

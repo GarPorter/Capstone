@@ -1,7 +1,7 @@
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
-from Computations.Koch import *
+from Backend.Koch import *
 
 st.title("Testing out Push to GitHub and Streamlit app")
 st.write("Lissajous Curve")

@@ -1,6 +1,7 @@
 import streamlit as st
-from Computations.MeandersAlgo import *
 import matplotlib.pyplot as plt
+from Backend.MeandersAlgo import *
+from Backend.SendData import getPoints
 
 st.title('Open Meander Curves')
 st.write('''
@@ -25,9 +26,28 @@ changing the size and shape of the segments, making it a highly customizable com
 st.subheader('Try it Yourself!')
 pt = st.slider("Number of Points", 2, 10, 3)
 
+c1, c2 = st.columns([9, 1])
 plot = createPlot(pt)
+clicked=False
+# Column containing button
+with c2:
+  ''
+  ''
+  ''
+  if st.button('Print'):
+    clicked = True
+    st.session_state.plot.savefig('SVG/Meander.svg', format='svg', dpi=100)
+    getPoints('SVG/Meander.svg')
 
-st.write(plot)
+# Column containing plot.
+# Dsiplays old plot if button is clicked otherwise creates new plot
+with c1:
+  if clicked:
+    st.write(st.session_state.plot)
+  else:
+    st.write(plot)
+
+st.session_state.plot = plot
 
 plt.close()
 
