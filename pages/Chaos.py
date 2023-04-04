@@ -142,7 +142,6 @@ plt.show()
 st.pyplot(fig)
 
 c1, c2 = st.columns([9, 1])
-plot = fig
 clicked=False
 # Column containing button
 with c2:
@@ -161,9 +160,9 @@ with c1:
   if clicked:
     st.write(st.session_state.plot)
   else:
-    st.write(plot)
+    st.write(fig)
 
-st.session_state.plot = plot
+st.session_state.plot = fig
 
 plt.close()
 
