@@ -3,6 +3,9 @@ from st_pages import Page, show_pages
 
 # Specify what pages should be shown in the sidebar, and what their titles
 # and icons should be
+
+# Icons Link - https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/
+
 show_pages(
     [
         Page("Test.py", "Welcome", ":house:"),
@@ -13,6 +16,7 @@ show_pages(
         Page("pages/Meanders.py", "Meanders", ":desert_island:"),
         Page("pages/Fractals.py", "Fractals", ":herb:"),
         Page("pages/Tree.py", "Tree", ":maple_leaf:"),
+        Page("pages/Chaos.py", "Chaos", ":milky_way:")
     ]
 )
 
