@@ -90,7 +90,7 @@ st.write('''To witness the motion that the sytems behave in, create your designs
 # Dropdown menu to select the attractor
 attractor = st.selectbox(
     "Select an attractor:",
-    ("Lorenz", "Rossler", "Rucklidge", "Thomas", "Aizawa")
+    ("Lorenz", "Thomas", "Aizawa") #Rossler and Rucklidge out of order atm
 )
 
 # Set default parameters for each attractor
@@ -132,7 +132,7 @@ xs, ys, zs = simulate_chaos(attractor_function, steps, dt)
 fig, ax = plt.subplots(figsize=(10,10))
 ax.set_xlabel("X")
 ax.set_ylabel("Y")
-ax.set_title("Lorenz Attractor")
+ax.set_title(attractor + " Attractor")
 
 ax.plot(xs, ys, lw=0.5, color='purple')
 plt.show()
