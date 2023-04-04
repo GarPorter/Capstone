@@ -164,7 +164,7 @@ with c1:
 
 st.session_state.plot = fig
 
-plt.close()
+#plt.close()
 
 
 
