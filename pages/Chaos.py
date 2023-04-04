@@ -1,6 +1,8 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+from Backend.SendData import getPoints
+from Backend.MeandersAlgo import *
 
 # Source - https://www.dynamicmath.xyz/strange-attractors/
 
@@ -138,6 +140,32 @@ ax.plot(xs, ys, lw=0.5, color='purple')
 plt.show()
 
 st.pyplot(fig)
+
+c1, c2 = st.columns([9, 1])
+plot = fig
+clicked=False
+# Column containing button
+with c2:
+  ''
+  ''
+  ''
+  if st.button('Print'):
+    clicked = True
+    st.session_state.plot.savefig('SVG/Chaos.svg', format='svg', dpi=100)
+    st.image('SVG/Chaos.svg')
+    getPoints('SVG/Chaos.svg')
+
+# Column containing plot.
+# Dsiplays old plot if button is clicked otherwise creates new plot
+with c1:
+  if clicked:
+    st.write(st.session_state.plot)
+  else:
+    st.write(plot)
+
+st.session_state.plot = plot
+
+plt.close()
 
 
 
