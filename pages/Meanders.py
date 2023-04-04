@@ -37,8 +37,8 @@ with c2:
   if st.button('Print'):
     clicked = True
     st.session_state.plot.savefig('SVG/Meander.svg', format='svg', dpi=100)
-    st.image('SVG/Meander.svg')
     getPoints('SVG/Meander.svg')
+    st.balloons()
 
 # Column containing plot.
 # Dsiplays old plot if button is clicked otherwise creates new plot
