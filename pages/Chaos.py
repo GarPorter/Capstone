@@ -82,12 +82,13 @@ st.write('''An attractor is a set of states in a dynamical system to which the s
         that the system will eventually converge to a fixed point or limit cycle, or 
         they can be chaotic, meaning that the system will exhibit sensitive dependence 
         on initial conditions and will never converge to a fixed point.''')
-        
+
+st.subheader("Try it Yourself!")
 st.write('''There are many systems that exhibit chaotic traits. Check out the following systems
         and change the parameters to see the behaviour of the solution curves.''')
 
 st.write('''To witness the motion that the sytems behave in, create your designs and hit print for a special 
-        robotic demonstration.''')
+        robotic demonstration!''')
 
 # Dropdown menu to select the attractor
 attractor = st.selectbox(
