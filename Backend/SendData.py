@@ -9,7 +9,6 @@ CHARACTERISTIC_UUID = "00000000-0000-0000-0000-000000000002" # Use BLE scanner o
 
 def getPoints(fileName):
     points = svg_to_points(fileName, 2)[2:-6]
-    print(f'we have the points {points[1]}')
     # asyncio.run(send_data(points))
 
 
