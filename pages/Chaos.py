@@ -139,7 +139,7 @@ ax.set_title(attractor + " Attractor")
 ax.plot(xs, ys, lw=0.5, color='purple')
 plt.show()
 
-st.pyplot(fig)
+#st.pyplot(fig)
 
 c1, c2 = st.columns([9, 1])
 clicked=False
