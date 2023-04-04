@@ -74,22 +74,20 @@ st.write('''Chaos equation attractors are mathematical constructs that describe 
         behavior of chaotic systems. Chaotic systems are systems that exhibit seemingly 
         random behavior, but which actually follow deterministic rules. These attractors 
         can be used to describe the behavior of many natural systems, including weather 
-        patterns, fluid flow, and the behavior of populations in ecological systems.
-        
-        An attractor is a set of states in a dynamical system to which the system evolves 
+        patterns, fluid flow, and the behavior of populations in ecological systems.''')
+
+st.write('''An attractor is a set of states in a dynamical system to which the system evolves 
         over time, regardless of its starting point. It is a mathematical concept used 
         to describe the long-term behavior of a system. Attractors can be stable, meaning 
         that the system will eventually converge to a fixed point or limit cycle, or 
         they can be chaotic, meaning that the system will exhibit sensitive dependence 
-        on initial conditions and will never converge to a fixed point.
-
-        There are many systems that exhibit chaotic traits. Check out the following systems
-        and change the parameters to see the behaviour of the solution curves. 
+        on initial conditions and will never converge to a fixed point.''')
         
-        To witness the motion that the sytems behave in, create your designs and hit print for a special 
-        robotic demonstration.
-        ''')
+st.write('''There are many systems that exhibit chaotic traits. Check out the following systems
+        and change the parameters to see the behaviour of the solution curves.''')
 
+st.write('''To witness the motion that the sytems behave in, create your designs and hit print for a special 
+        robotic demonstration.''')
 
 # Dropdown menu to select the attractor
 attractor = st.selectbox(
