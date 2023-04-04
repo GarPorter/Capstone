@@ -11,6 +11,7 @@ from Backend.MeandersAlgo import *
 #       2.) Rucklidge equation isn't plotting, probably because the time step is too big or way too small
 #       3.) The Plot title is wrong (all titled Lorenz), need to update the respective titles later
 #       4.) The amount of options user has is overwhelming, maybe fix time step and number of steps to make it easier
+#       5.) Printing currently is not doing it right
 
 # Lorenz attractor function
 def lorenz_attractor(x, y, z, sigma=10., beta=2.67, rho=28.):
@@ -139,8 +140,10 @@ ax.set_title(attractor + " Attractor")
 ax.plot(xs, ys, lw=0.5, color='purple')
 plt.show()
 
-#st.pyplot(fig)
+st.pyplot(fig)
 
+'''
+# Printing to SVG
 c1, c2 = st.columns([9, 1])
 clicked=False
 # Column containing button
@@ -164,8 +167,8 @@ with c1:
 
 st.session_state.plot = fig
 
-#plt.close()
-
+plt.close()
+'''
 
 
 
