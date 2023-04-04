@@ -70,6 +70,26 @@ def simulate_chaos(attractor_function, steps=10000, dt=0.01):
 
 # Streamlit app
 st.title("Chaos Equation Demonstrations")
+st.write('''Chaos equation attractors are mathematical constructs that describe the 
+        behavior of chaotic systems. Chaotic systems are systems that exhibit seemingly 
+        random behavior, but which actually follow deterministic rules. These attractors 
+        can be used to describe the behavior of many natural systems, including weather 
+        patterns, fluid flow, and the behavior of populations in ecological systems.
+        
+        An attractor is a set of states in a dynamical system to which the system evolves 
+        over time, regardless of its starting point. It is a mathematical concept used 
+        to describe the long-term behavior of a system. Attractors can be stable, meaning 
+        that the system will eventually converge to a fixed point or limit cycle, or 
+        they can be chaotic, meaning that the system will exhibit sensitive dependence 
+        on initial conditions and will never converge to a fixed point.
+
+        There are many systems that exhibit chaotic traits. Check out the following systems
+        and change the parameters to see the behaviour of the solution curves. 
+        
+        To witness the motion that the sytems behave in, create your designs and hit print for a special 
+        robotic demonstration.
+        ''')
+
 
 # Dropdown menu to select the attractor
 attractor = st.selectbox(
@@ -83,7 +103,7 @@ if attractor == "Lorenz":
     beta = st.slider("Beta", min_value=0.1, max_value=200., value=2.67, step=0.01)
     rho = st.slider("Rho", min_value=0.1, max_value=200., value=28., step=0.01)
     attractor_function = lorenz_attractor
-elif attractor == "Rossler":
+elif attractor == "Rossler (Out of Order)":
     a = st.slider("a", min_value=0.01, max_value=0.5, value=0.1, step=0.01)
     b = st.slider("b", min_value=0.01, max_value=0.5, value=0.1, step=0.01)
     c = st.slider("c", min_value=5., max_value=20., value=14., step=0.1)
