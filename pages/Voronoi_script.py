@@ -6,11 +6,11 @@ import random
 st.title("Voronoi Patterns")
 
 st.write("""
-Voronoi patterns are found all throughout nature, from the way bubbles interact to physical patterns found in giraffes, vegetables, mountain 
-range formations and more! We can use this for engineering applications through mapping and gps systems. 
+Voronoi patterns are found all throughout nature, from the way bubbles interact to physical patterns found in giraffes, vegetables, mountain
+range formations and more! We can use this for engineering applications through mapping and gps systems.
 
-In a Voronoi pattern, every point within a given region is closer to the “seed” inside that region than it is 
-to any other point outside that region. Each point along a region's edge is equidistant from the two nearest seeds. 
+In a Voronoi pattern, every point within a given region is closer to the “seed” inside that region than it is
+to any other point outside that region. Each point along a region's edge is equidistant from the two nearest seeds.
 
 Try setting the amount of seeds to set up a map and see what happens!
 """)
@@ -35,7 +35,6 @@ fig = voronoi_plot_2d(vor)
 
 #plot results
 figure, axes = plt.subplots()
-plt.show()
 plt.axis("off")
 axes.set_aspect(1)
 figure.tight_layout()

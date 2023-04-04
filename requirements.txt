@@ -4,3 +4,8 @@ streamlit
 st_pages
 scipy
 PythonTurtle
+Pillow
+python-time
+bleak
+svgpathtools
+asyncio

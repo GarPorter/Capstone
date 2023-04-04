@@ -16,7 +16,8 @@ show_pages(
         Page("pages/Meanders.py", "Meanders", ":desert_island:"),
         Page("pages/Fractals.py", "Fractals", ":herb:"),
         Page("pages/Tree.py", "Tree", ":maple_leaf:"),
-        Page("pages/Chaos.py", "Chaos", ":milky_way:")
+        Page("pages/Chaos.py", "Chaos", ":milky_way:"),
+        Page("pages/Fibonacci.py", "Fibonacci", ":sunflower:")
     ]
 )
 
