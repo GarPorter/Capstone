@@ -6,6 +6,5 @@ scipy
 PythonTurtle
 Pillow
 python-time
-socket
 svgpathtools
 pickle
