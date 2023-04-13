@@ -58,7 +58,6 @@ def getPoints(fileName, Modb):
     elif 'Koch' in fileName:
         oldPoints = svg_to_points(fileName, 2)[2:-5]
         oldPoints = oset(oldPoints[0])
-        print(len(oldPoints))
         points=oldPoints[(len(oldPoints)+1)//2:]+oldPoints[:(len(oldPoints)+1)//2]
         points.append(points[0])
         # sendToRPI(points)
