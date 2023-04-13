@@ -6,6 +6,6 @@ scipy
 PythonTurtle
 Pillow
 python-time
-bleak
+socket
 svgpathtools
-asyncio
+pickle

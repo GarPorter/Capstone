@@ -1,19 +1,64 @@
 from Backend.SvgToPoints import *
-import time
-import asyncio
-from bleak import BleakClient
+import socket
+import pickle
 
-DEVICE_ADDRESS = "00:11:22:33:44:55" # MAC address of Raspberry Pi Bluetooth Adapter
-SERVICE_UUID = "00000000-0000-0000-0000-000000000001" # Use BLE scanner on rpi to find
-CHARACTERISTIC_UUID = "00000000-0000-0000-0000-000000000002" # Use BLE scanner on rpi to find
+# Sends array of points to RPI robot through IP host
+# Param points: list
+def sendToRPI(points):
+    host = '192.168.0.192'
+    port = 6677 # Same port as inputted on RPI
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((host, port))
+        print('connceted to RPI')
+        data = pickle.dumps(points)
+        s.sendall(data)
+        print('sent data:', data[1:5])
 
-def getPoints(fileName):
-    points = svg_to_points(fileName, 2)[2:-6]
-    # asyncio.run(send_data(points))
+# Remove duplicate from set but keep order
+# Param seq: list
+# Returns list
+def oset(seq):
+  seen = set()
+  seen_add = seen.add
+  return [x for x in seq if not (x in seen or seen_add(x))]
 
+# Removes duplicates list from a list of lists
+# Param list list_of_lists
+# Returns list unique_lists
+def rdl(list_of_lists):
+  unique_lists = []
+  for l in list_of_lists:
+      if l not in unique_lists:
+          unique_lists.append(l)
+  return unique_lists
 
-# async def send_data(data):
-#     async with BleakClient(DEVICE_ADDRESS) as client:
-#         await client.connect()
-#         await client.write_gatt_char(CHARACTERISTIC_UUID, data.encode("utf-8"))
-#         await client.disconnect()
+# Covers SVG file to array of points
+# Param fileName: string
+# Param Modb: Modifier in Brownian Motion (0 if not Brownian)
+def getPoints(fileName, Modb):
+    points=[]
+    if 'Meander' in fileName:
+        oldPoints = svg_to_points(fileName, 2)[2:-6]
+        for path in oldPoints:
+            points.append(oset(path))
+        # sendToRPI(points)
+    elif 'Brownian' in fileName:
+        oldPoints = svg_to_points(fileName, 2)
+        for path in oldPoints:
+            if len(path) == Modb*2-2: # Correct path
+                points.append(oset(path))
+        # sendToRPI(points)
+    elif 'Sierpinski' in fileName:
+        oldPoints = svg_to_points(fileName, 2)
+        oldPoints=rdl(oldPoints)
+        for path in oldPoints: # [0:14] for lower order
+            path=[path[0], path[1], path[4], path[5]]
+            points.append(path)
+        # sendToRPI(points)
+    elif 'Koch' in fileName:
+        oldPoints = svg_to_points(fileName, 2)[2:-5]
+        oldPoints = oset(oldPoints[0])
+        print(len(oldPoints))
+        points=oldPoints[(len(oldPoints)+1)//2:]+oldPoints[:(len(oldPoints)+1)//2]
+        points.append(points[0])
+        # sendToRPI(points)
