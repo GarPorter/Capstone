@@ -1,6 +1,7 @@
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
+from Backend.SendData import *
 
 # Initialize x and y arrays to zero
 if 'x' and 'y' not in st.session_state:
@@ -9,6 +10,11 @@ if 'x' and 'y' not in st.session_state:
 
 x = st.session_state.x
 y = st.session_state.y
+
+def oset(seq):
+  seen = set()
+  seen_add = seen.add
+  return [x for x in seq if not (x in seen or seen_add(x))]
 
 st.header("The Chaos Game")
 st.write('''The Chaos Game is a method of generating fractal patterns using a
@@ -78,6 +84,17 @@ with col[6]:
     x = [0]
     y = [0]
 
+c1, c2 = st.columns([9, 1])
+points=[]
+
+# Column 2 holds the print button
+with c2:
+  ''
+  ''
+  ''
+  if st.button('Print'):
+    points = getPoints('SVG/Sierpinski.svg', 0)
+
 plot = plt.figure(figsize=(8, 8))
 plt.axis()
 plt.text(-3.2, 0.05, 'A', fontsize=20)
@@ -87,7 +104,24 @@ plt.plot((-3, 0, 3), (0, 3/np.sqrt(3), 0), 'bo')
 plt.scatter(x, y, s=4)
 plt.xticks([])
 plt.yticks([])
-st.write(plot)
+
+# Column 1 holds the plot
+with c1:
+  st.write(plot)
+
+# Plot points
+fig, ax = plt.subplots()
+points=rdl(points)
+for i, path in enumerate(points[0:14]):
+    path=[path[0], path[1], path[4], path[5]]
+    x, y = zip(*path)
+    ax.plot(x, y)
+    ax.scatter(x, y)
+    ax.text(x[0], y[0], i)
+    ax.text(x[1], y[1], i)
+    ax.text(x[2], y[2], i)
+ax.set_aspect('equal')
+st.pyplot(fig)
 
 st.subheader('References')
 st.write('''

@@ -2,6 +2,7 @@ import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
 from Backend.Koch import *
+from Backend.SendData import *
 
 st.title("Testing out Push to GitHub and Streamlit app")
 st.write("Lissajous Curve")
@@ -53,7 +54,22 @@ plt.xticks([])
 plt.yticks([])
 plt.axis('equal')
 plt.fill(x, y)
-st.write(plot)
+
+
+c1, c2 = st.columns([9, 1])
+points=[]
+if ord < 5:
+    with c2:
+        ''
+        ''
+        ''
+        if st.button('Print'):
+            plot.savefig('SVG/Koch.svg', format='svg', dpi=100)
+            points = getPoints('SVG/Koch.svg', 0)
+            st.balloons()
+
+with c1:
+    st.write(plot)
 
 ''''''
 
