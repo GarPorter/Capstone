@@ -93,7 +93,7 @@ with c2:
   ''
   ''
   if st.button('Print'):
-    points = getPoints('SVG/Sierpinski.svg', 0)
+    getPoints('SVG/Sierpinski.svg', 0)
 
 plot = plt.figure(figsize=(8, 8))
 plt.axis()
@@ -108,20 +108,6 @@ plt.yticks([])
 # Column 1 holds the plot
 with c1:
   st.write(plot)
-
-# Plot points
-fig, ax = plt.subplots()
-points=rdl(points)
-for i, path in enumerate(points[0:14]):
-    path=[path[0], path[1], path[4], path[5]]
-    x, y = zip(*path)
-    ax.plot(x, y)
-    ax.scatter(x, y)
-    ax.text(x[0], y[0], i)
-    ax.text(x[1], y[1], i)
-    ax.text(x[2], y[2], i)
-ax.set_aspect('equal')
-st.pyplot(fig)
 
 st.subheader('References')
 st.write('''
