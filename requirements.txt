@@ -7,4 +7,3 @@ PythonTurtle
 Pillow
 python-time
 svgpathtools
-pickle
