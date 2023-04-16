@@ -45,6 +45,7 @@ The Koch snowflake can be applied in the real world in a variety of ways, includ
      phenomena such as diffusion-limited aggregation and pattern formation in nature.''')
 
 st.subheader('Try it Yourself!')
+st.write('_Note: Printing is only available up to order 4_')
 ord = st.slider("Pick Order of Snowflake", 1, 8, 3, key = "<three>")
 
 x, y = koch_snowflake(order=ord)

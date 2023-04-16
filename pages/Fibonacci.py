@@ -5,6 +5,7 @@ import matplotlib.path as mpath
 import matplotlib.patches as mpatches
 import time
 from PIL import Image
+from Backend.SendData import getPoints
 
 st.header('Fibonacci Spiral')
 
@@ -41,86 +42,108 @@ def genFibo(n):
       n=n-1
   return nums
 
-# Fibonacci sequence, x, and y arrays
-fa = genFibo(nums)[2:]
-x = [-1, -4, -4, 1, -4, -25, -25, 9, -25, -169, -169, 64, -169]
-y = [1, 0, -5, -5, 3, -5, -39, -39, 16, -39, -272, -272, 105]
+c1, c2 = st.columns([9, 1])
 
-# Create initial plot with margins, autoscaling, and first two squares
-fig, ax = plt.subplots()
-plt.xticks([])
-plt.yticks([])
-ax.axis('equal')
-ax.margins(0.75, 0.75)
-plt.autoscale()
-ax.add_patch(Rectangle((-1,0), 1, 1, fc='None', ec='k'))
-ax.add_patch(Rectangle((0,0), 1, 1, fc='None', ec='k'))
+with c1:
+  # Fibonacci sequence, x, and y arrays
+  fa = genFibo(nums)[2:]
+  x = [-1, -4, -4, 1, -4, -25, -25, 9, -25, -169, -169, 64, -169]
+  y = [1, 0, -5, -5, 3, -5, -39, -39, 16, -39, -272, -272, 105]
 
-the_plot = st.pyplot(plt)
-
-# Plots each square in the Fibonacci Spiral
-# Param: i (int) index
-# Param: x (array) array of x values
-# Param: y (array) array of y values
-def animate(i, x, y):
+  # Create initial plot with margins, autoscaling, and first two squares
+  fig, ax = plt.subplots()
+  plt.xticks([])
+  plt.yticks([])
+  ax.axis('equal')
+  ax.margins(0.75, 0.75)
   plt.autoscale()
-  ax.add_patch(Rectangle((x[i],y[i]), fa[i], fa[i], fc='None', ec='k'))
-  the_plot.pyplot(plt)
+  ax.add_patch(Rectangle((-1,0), 1, 1, fc='None', ec='k'))
+  ax.add_patch(Rectangle((0,0), 1, 1, fc='None', ec='k'))
 
-# Adds delay to drawing of squares and calls animate function
-for i in range(nums-2):
-    time.sleep(0.5)
-    animate(i, x, y)
+  the_plot = st.pyplot(plt)
 
-# First two curves
-Path = mpath.Path
-pp1 = mpatches.PathPatch(
-    Path([(-1, 1), (-1, 0), (0, 0)],
-        [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
-    fc="none", ec='r', transform=ax.transData)
+  # Plots each square in the Fibonacci Spiral
+  # Param: i (int) index
+  # Param: x (array) array of x values
+  # Param: y (array) array of y values
+  def animate(i, x, y):
+    plt.autoscale()
+    ax.add_patch(Rectangle((x[i],y[i]), fa[i], fa[i], fc='None', ec='k'))
+    the_plot.pyplot(plt)
 
-ax.add_patch(pp1)
-the_plot.pyplot(plt)
+  # Adds delay to drawing of squares and calls animate function
+  for i in range(nums-2):
+      time.sleep(0.5)
+      animate(i, x, y)
 
-pp1 = mpatches.PathPatch(
-    Path([(0, 0), (1, 0), (1, 1)],
-        [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
-    fc="none", ec='r', transform=ax.transData)
+  patches=[]
 
-ax.add_patch(pp1)
-the_plot.pyplot(plt)
-
-p1 = (1, 1)
-
-# Plotting curve
-for i in range(len(fa)):
-  time.sleep(0.25)
-# alternate between - +, - -, + -, + +
-  if i % 4 == 0:
-    p2 = (p1[0]-fa[i], p1[1]+fa[i])
-  elif i % 4 == 1:
-    p2 = (p1[0]-fa[i], p1[1]-fa[i])
-  elif i % 4 == 2:
-    p2 = (p1[0]+fa[i], p1[1]-fa[i])
-  else:
-    p2 = (p1[0]+fa[i], p1[1]+fa[i])
-
-  # for p3 alternate between (p1[0], p2[1]) and (p2[0], p1[1])
-  # (1.03 makes the spiral smoother)
-  if i % 2 == 0:
-    p3 = (p1[0]/1.03, p2[1]/1.03)
-  else:
-    p3 = (p2[0]/1.03, p1[1]/1.03)
-
+  # First two curves
+  Path = mpath.Path
   pp1 = mpatches.PathPatch(
-  Path([p1, p3, p2],
-        [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
-  fc="none", ec='r', transform=ax.transData)
-
-  p1 = p2
+      Path([(-1, 1), (-1, 0), (0, 0)],
+          [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
+      fc="none", ec='r', transform=ax.transData)
 
   ax.add_patch(pp1)
   the_plot.pyplot(plt)
+  patches.append(pp1)
+
+  pp1 = mpatches.PathPatch(
+      Path([(0, 0), (1, 0), (1, 1)],
+          [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
+      fc="none", ec='r', transform=ax.transData)
+
+  ax.add_patch(pp1)
+  the_plot.pyplot(plt)
+  patches.append(pp1)
+
+  p1 = (1, 1)
+
+  # Plotting curve
+  for i in range(len(fa)):
+    time.sleep(0.25)
+  # alternate between - +, - -, + -, + +
+    if i % 4 == 0:
+      p2 = (p1[0]-fa[i], p1[1]+fa[i])
+    elif i % 4 == 1:
+      p2 = (p1[0]-fa[i], p1[1]-fa[i])
+    elif i % 4 == 2:
+      p2 = (p1[0]+fa[i], p1[1]-fa[i])
+    else:
+      p2 = (p1[0]+fa[i], p1[1]+fa[i])
+
+    # for p3 alternate between (p1[0], p2[1]) and (p2[0], p1[1])
+    # (1.03 makes the spiral smoother)
+    if i % 2 == 0:
+      p3 = (p1[0]/1.03, p2[1]/1.03)
+    else:
+      p3 = (p2[0]/1.03, p1[1]/1.03)
+
+    pp1 = mpatches.PathPatch(
+    Path([p1, p3, p2],
+          [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
+    fc="none", ec='r', transform=ax.transData)
+
+    p1 = p2
+
+    ax.add_patch(pp1)
+    the_plot.pyplot(plt)
+    patches.append(pp1)
+
+with c2:
+  ''
+  ''
+  ''
+  # Convert matplotlib patches to array of points
+  if st.button('Print'):
+    points = []
+    for patch in patches:
+      vertices = patch.get_verts()
+      for vertex in vertices:
+        points.append((round(vertex[0], 2), round(vertex[1], 2)))
+    getPoints('Fib', points)
+    st.balloons()
 
 # Adds example and removes fade when reloading
 st.markdown("<style>.element-container{opacity:1 !important}</style>", unsafe_allow_html=True)

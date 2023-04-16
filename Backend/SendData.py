@@ -34,8 +34,8 @@ def rdl(list_of_lists):
 
 # Covers SVG file to array of points
 # Param fileName: string
-# Param Modb: Modifier in Brownian Motion (0 if not Brownian)
-def getPoints(fileName, Modb):
+# Param param: extra parameter if needed to be sent from page
+def getPoints(fileName, param):
     points=[]
     if 'Meander' in fileName:
         oldPoints = svg_to_points(fileName, 2)[2:-6]
@@ -45,7 +45,7 @@ def getPoints(fileName, Modb):
     elif 'Brownian' in fileName:
         oldPoints = svg_to_points(fileName, 2)
         for path in oldPoints:
-            if len(path) == Modb*2-2: # Correct path
+            if len(path) == param*2-2: # Correct path
                 points.append(oset(path))
         # sendToRPI(points)
     elif 'Sierpinski' in fileName:
@@ -60,4 +60,7 @@ def getPoints(fileName, Modb):
         oldPoints = oset(oldPoints[0])
         points=oldPoints[(len(oldPoints)+1)//2:]+oldPoints[:(len(oldPoints)+1)//2]
         points.append(points[0])
+        # sendToRPI(points)
+    elif 'Fib' in fileName:
+        print('in fib')
         # sendToRPI(points)
