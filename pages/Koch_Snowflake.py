@@ -40,15 +40,14 @@ plt.fill(x, y)
 
 
 c1, c2 = st.columns([9, 1])
-points=[]
 if ord < 5:
     with c2:
         ''
         ''
         ''
-        if st.button('Print', key='koch'):
+        if st.button('Print'):
             plot.savefig('SVG/Koch.svg', format='svg', dpi=100)
-            points = getPoints('SVG/Koch.svg', 0)
+            getPoints('SVG/Koch.svg')
             st.balloons()
 
 with c1:

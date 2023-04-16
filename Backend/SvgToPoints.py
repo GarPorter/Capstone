@@ -1,6 +1,6 @@
 import svgpathtools
 
-def svg_to_points(svg_file, n_points):
+def svg_to_points(svg_file, n_points=2):
     paths, attributes = svgpathtools.svg2paths(svg_file)
     point_arrays = []
     for path in paths:
