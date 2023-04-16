@@ -9,7 +9,8 @@ from st_pages import Page, show_pages
 show_pages(
     [
         Page("Test.py", "Welcome", ":house:"),
-        Page("pages/Main_Page.py", "Main Page", ":computer:"),
+        Page("pages/Lissajous.py", "Lissajous", ":curly_loop:"),
+        Page("pages/Koch_Snowflake.py", "Koch Snowflake", ":snowflake:"),
         Page("pages/The_Chaos_Game.py", "Chaos Game", ":space_invader:"),
         Page("pages/Brownian_Motion.py", "Brownian", ":floppy_disk:"),
         Page("pages/Voronoi_script.py", "Voronoi", ":world_map:"),

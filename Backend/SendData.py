@@ -35,7 +35,7 @@ def rdl(list_of_lists):
 # Covers SVG file to array of points
 # Param fileName: string
 # Param param: extra parameter if needed to be sent from page
-def getPoints(fileName, param):
+def getPoints(fileName, param=0):
     points=[]
     if 'Meander' in fileName:
         oldPoints = svg_to_points(fileName, 2)[2:-6]
@@ -63,4 +63,8 @@ def getPoints(fileName, param):
         # sendToRPI(points)
     elif 'Fib' in fileName:
         print('in fib')
+        # sendToRPI(points)
+    elif 'Lissajous' in fileName:
+        points = svg_to_points(fileName, 2)[2]
+        points = oset(points)
         # sendToRPI(points)
