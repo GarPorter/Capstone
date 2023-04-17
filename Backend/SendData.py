@@ -38,25 +38,25 @@ def rdl(list_of_lists):
 def getPoints(fileName, param=0):
     points=[]
     if 'Meander' in fileName:
-        oldPoints = svg_to_points(fileName, 2)[2:-6]
+        oldPoints = svg_to_points(fileName)[2:-6]
         for path in oldPoints:
             points.append(oset(path))
         # sendToRPI(points)
     elif 'Brownian' in fileName:
-        oldPoints = svg_to_points(fileName, 2)
+        oldPoints = svg_to_points(fileName)
         for path in oldPoints:
             if len(path) == param*2-2: # Correct path
                 points.append(oset(path))
         # sendToRPI(points)
     elif 'Sierpinski' in fileName:
-        oldPoints = svg_to_points(fileName, 2)
+        oldPoints = svg_to_points(fileName)
         oldPoints=rdl(oldPoints)
         for path in oldPoints: # [0:14] for lower order
             path=[path[0], path[1], path[4], path[5]]
             points.append(path)
         # sendToRPI(points)
     elif 'Koch' in fileName:
-        oldPoints = svg_to_points(fileName, 2)[2:-5]
+        oldPoints = svg_to_points(fileName)[2:-5]
         oldPoints = oset(oldPoints[0])
         points=oldPoints[(len(oldPoints)+1)//2:]+oldPoints[:(len(oldPoints)+1)//2]
         points.append(points[0])
@@ -65,6 +65,9 @@ def getPoints(fileName, param=0):
         print('in fib')
         # sendToRPI(points)
     elif 'Lissajous' in fileName:
-        points = svg_to_points(fileName, 2)[2]
+        points = svg_to_points(fileName)[2]
         points = oset(points)
+        # sendToRPI(points)
+    elif 'Voronoi' in fileName:
+        print('got the points')
         # sendToRPI(points)
