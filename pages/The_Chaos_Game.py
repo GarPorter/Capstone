@@ -85,7 +85,6 @@ with col[6]:
     y = [0]
 
 c1, c2 = st.columns([9, 1])
-points=[]
 
 # Column 2 holds the print button
 with c2:
