@@ -1,7 +1,7 @@
 import numpy as np
 import streamlit as st
 
-def VoronoiFix(lines):
+def boundPoints(lines):
   points=[]
   xmin = min(st.session_state.pointsArr[:, 0])*0.8
   ymin = min(st.session_state.pointsArr[:, 1])*0.8

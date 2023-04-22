@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import random
 from Backend.SendData import getPoints
-from Backend.VoronoiBound import *
+from Backend.VoronoiBound import boundPoints
 
 st.title("Voronoi Patterns")
 
@@ -40,6 +40,7 @@ fig = voronoi_plot_2d(vor)
 plot = plt.figure()
 c1, c2 = st.columns([9, 1])
 clicked=False
+points=[]
 # Column containing button
 with c2:
   ''
@@ -50,12 +51,16 @@ with c2:
     vertices = st.session_state.vor.vertices
     lines = [st.session_state.vor.vertices[line] for line in st.session_state.vor.ridge_vertices if -1 not in line]
 
-    points = VoronoiFix(lines)
+    points = boundPoints(lines)
     for ps in st.session_state.pointsArr:
       points.insert(0, [tuple(ps.tolist())])
 
-    points = getPoints('SVG/Voronoi.svg', points)
+    getPoints('SVG/Voronoi.svg', points)
     st.balloons()
+  else:
+    st.session_state.fig = fig
+    st.session_state.pointsArr = pointsArr
+    st.session_state.vor=vor
 
 # Column containing plot.
 # Dsiplays old plot if button is clicked otherwise creates new plot
@@ -64,11 +69,6 @@ with c1:
     st.write(st.session_state.fig)
   else:
     st.write(fig)
-
-st.session_state.fig = fig
-
-st.session_state.pointsArr = pointsArr
-st.session_state.vor=vor
 
 plt.close()
 

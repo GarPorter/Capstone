@@ -32,6 +32,8 @@ with c2:
     st.session_state.figure.savefig('SVG/Brownian.svg', format='svg', dpi=100)
     getPoints('SVG/Brownian.svg', Modb)
     st.balloons()
+  else:
+    st.session_state.figure = figure
 
 # Column containing plot.
 # Dsiplays old plot if button is clicked otherwise creates new plot
@@ -41,5 +43,4 @@ with c1:
   else:
     st.write(figure)
 
-st.session_state.figure = figure
 plt.close()
