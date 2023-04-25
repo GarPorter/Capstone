@@ -15,7 +15,8 @@ def getIp():
 # Sends array of points to RPI robot through IP host
 # Param points: list
 def sendToRPI(points):
-    host = getIp()
+    # host = getIp()
+    host='192.168.0.205'
     print(host)
     port = 6677 # Same port as inputted on RPI
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
