@@ -1,19 +1,28 @@
 from Backend.SvgToPoints import *
 import socket
 import pickle
-from operator import itemgetter
+import subprocess
+
+# Gets IP address of RPI from MAC address of RPI
+# Returns IP address
+def getIp():
+    cmd = 'arp -a | findstr "b8-27-eb-75-0a-d5" '
+    returned_output = subprocess.check_output((cmd),shell=True,stderr=subprocess.STDOUT)
+    parse=str(returned_output).split(' ',1)
+    ip=parse[1].split(' ')
+    return ip[1]
 
 # Sends array of points to RPI robot through IP host
 # Param points: list
 def sendToRPI(points):
-    host = '192.168.0.192'
+    host = getIp()
+    print(host)
     port = 6677 # Same port as inputted on RPI
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((host, port))
         print('connceted to RPI')
         data = pickle.dumps(points)
         s.sendall(data)
-        print('sent data:', data[1:5])
 
 # Remove duplicate from set but keep order
 # Param seq: list
@@ -64,14 +73,14 @@ def getPoints(fileName, param=0):
         for path in oldPoints:
             points.append(oset(path))
         points=transform(points)
-        # sendToRPI(points)
+        sendToRPI(points)
     elif 'Brownian' in fileName:
         oldPoints = svg_to_points(fileName)
         for path in oldPoints:
             if len(path) == param*2-2: # Correct path; Param = Modb
                 points.append(oset(path))
         points=transform(points)
-        # sendToRPI(points)
+        sendToRPI(points)
     elif 'Sierpinski' in fileName:
         oldPoints = svg_to_points(fileName)
         oldPoints=rdl(oldPoints)
@@ -79,25 +88,25 @@ def getPoints(fileName, param=0):
             path=[path[0], path[1], path[4], path[5]]
             points.append(path)
         points=transform(points)
-        # sendToRPI(points)
+        sendToRPI(points)
     elif 'Koch' in fileName:
         oldPoints = svg_to_points(fileName)[2:-5]
         oldPoints = oset(oldPoints[0])
         points=oldPoints[(len(oldPoints)+1)//2:]+oldPoints[:(len(oldPoints)+1)//2]
         points.append(points[0])
         points=transform([points])
-        # sendToRPI(points)
+        sendToRPI(points)
     elif 'Fib' in fileName:
         points=transform([param])
-        # sendToRPI(points)
+        sendToRPI(points)
     elif 'Lissajous' in fileName:
         points = svg_to_points(fileName)[2]
         points = [oset(points)]
         points=transform(points)
-        # sendToRPI(points)
+        sendToRPI(points)
     elif 'Voronoi' in fileName:
         points=transform(param)
-        # sendToRPI(points)
+        sendToRPI(points)
     # elif 'Fern' in fileName:
     #     oldPoints = svg_to_points(fileName)
     #     for path in oldPoints:

@@ -93,6 +93,7 @@ with c2:
   ''
   if st.button('Print'):
     getPoints('SVG/Sierpinski.svg')
+    st.balloons()
 
 plot = plt.figure(figsize=(8, 8))
 plt.axis()
