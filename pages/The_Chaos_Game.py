@@ -34,7 +34,9 @@ st.write('''
  versatility of the Sierpinski triangle make it an ideal tool for image compression.''')
 
 st.subheader('Try it Yourself!')
+st.write('_Note: The Printing start at Point C_')
 st.write('Pick a random Vertex or skip forward 1000 steps')
+
 
 a, b = 0, 0
 

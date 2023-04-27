@@ -37,7 +37,6 @@ from scipy.spatial import Voronoi, voronoi_plot_2d
 vor = Voronoi(pointsArr)
 fig = voronoi_plot_2d(vor)
 
-plot = plt.figure()
 c1, c2 = st.columns([9, 1])
 clicked=False
 points=[]
@@ -66,6 +65,9 @@ with c2:
 # Dsiplays old plot if button is clicked otherwise creates new plot
 with c1:
   if clicked:
+    ax=st.session_state.fig.gca()
+    ax.scatter(points[0][0][0], points[0][0][1], c='red')
+    ax.text(points[0][0][0]-0.02, points[0][0][1]+0.01, 'Start', fontsize=12)
     st.write(st.session_state.fig)
   else:
     st.write(fig)

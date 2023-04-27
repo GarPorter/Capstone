@@ -13,6 +13,7 @@ def createPlot(pt):
 
   # Creates the intersection points and horizontal line
   pts=[0.05*i + x - 5 for i, x in enumerate(sorted(random.sample(range(10), pt)))]
+  firstx=pts[0]
   for x in pts: plt.scatter(x, 0, s=20, c='#FF0000', zorder=3)
   plt.plot((-5, 5), (0, 0), 'gray', zorder=2)
   pts.sort()
@@ -66,4 +67,4 @@ def createPlot(pt):
           return createPlot(pt)
     plt.plot(xnew[i], f2(xnew[i]), 'k', zorder=1)
 
-  return plot
+  return plot, firstx

@@ -27,7 +27,8 @@ st.subheader('Try it Yourself!')
 pt = st.slider("Number of Points", 2, 10, 3)
 
 c1, c2 = st.columns([9, 1])
-plot = createPlot(pt)
+plot, firstx = createPlot(pt)
+print(firstx)
 clicked=False
 # Column containing button
 with c2:
@@ -41,11 +42,14 @@ with c2:
     st.balloons()
   else:
     st.session_state.plot = plot
+    st.session_state.firstx = firstx
 
 # Column containing plot.
 # Dsiplays old plot if button is clicked otherwise creates new plot
 with c1:
   if clicked:
+    ax=st.session_state.plot.gca()
+    ax.text(st.session_state.firstx-0.4, 0.05, 'Start', fontsize=12)
     st.write(st.session_state.plot)
   else:
     st.write(plot)

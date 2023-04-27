@@ -3,6 +3,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from Backend.Koch import *
 from Backend.SendData import *
+from Backend.SvgToPoints import *
 
 st.title("Testing out Push to GitHub and Streamlit app")
 st.write("Lissajous Curve")
@@ -21,14 +22,20 @@ plt.yticks([])
 axes.plot(x,y)
 
 c1, c2 = st.columns([9, 1])
-with c1:
-    st.write(figure)
-
+points=[]
+clicked=False
 with c2:
     ''
     ''
     ''
     if st.button('Print'):
+        clicked=True
         figure.savefig('SVG/Lissajous.svg', format='svg', dpi=100)
-        getPoints('SVG/Lissajous.svg')
+        points=getPoints('SVG/Lissajous.svg')
         st.balloons()
+
+with c1:
+    if clicked:
+        axes.scatter(x[0], y[0], c='red', zorder=100)
+        axes.text(x[0]-0.08, y[0]-0.12, 'Start', fontsize=12, zorder=101)
+    st.write(figure)

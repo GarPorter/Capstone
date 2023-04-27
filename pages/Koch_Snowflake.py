@@ -38,7 +38,7 @@ plt.yticks([])
 plt.axis('equal')
 plt.fill(x, y)
 
-
+clicked=False
 c1, c2 = st.columns([9, 1])
 if ord < 5:
     with c2:
@@ -46,11 +46,15 @@ if ord < 5:
         ''
         ''
         if st.button('Print'):
+            clicked=True
             plot.savefig('SVG/Koch.svg', format='svg', dpi=100)
             getPoints('SVG/Koch.svg')
             st.balloons()
 
 with c1:
+    if clicked:
+        plt.scatter(0, -5.75, c='red', zorder=100)
+        plt.text(-0.5, -6.2, 'Start', fontsize=15, zorder=101)
     st.write(plot)
 
 ''''''
