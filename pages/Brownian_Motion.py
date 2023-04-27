@@ -21,7 +21,6 @@ plt.yticks([])
 
 c1, c2 = st.columns([9, 1])
 clicked=False
-points=[]
 # Column containing button
 with c2:
   ''
@@ -30,7 +29,7 @@ with c2:
   if st.button('Print'):
     clicked = True
     st.session_state.figure.savefig('SVG/Brownian.svg', format='svg', dpi=100)
-    points=getPoints('SVG/Brownian.svg', Modb)
+    getPoints('SVG/Brownian.svg', Modb)
     st.balloons()
   else:
     st.session_state.figure = figure

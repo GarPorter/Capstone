@@ -28,7 +28,6 @@ pt = st.slider("Number of Points", 2, 10, 3)
 
 c1, c2 = st.columns([9, 1])
 plot, firstx = createPlot(pt)
-print(firstx)
 clicked=False
 # Column containing button
 with c2:

@@ -22,7 +22,6 @@ plt.yticks([])
 axes.plot(x,y)
 
 c1, c2 = st.columns([9, 1])
-points=[]
 clicked=False
 with c2:
     ''
@@ -31,7 +30,7 @@ with c2:
     if st.button('Print'):
         clicked=True
         figure.savefig('SVG/Lissajous.svg', format='svg', dpi=100)
-        points=getPoints('SVG/Lissajous.svg')
+        getPoints('SVG/Lissajous.svg')
         st.balloons()
 
 with c1:
