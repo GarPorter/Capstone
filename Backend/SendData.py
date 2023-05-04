@@ -6,7 +6,7 @@ import subprocess
 # # Gets IP address of RPI from MAC address of RPI
 # # Returns IP address
 # def getIp():
-#     cmd = 'arp -a | findstr "b8-27-eb-75-0a-d5" '
+#     cmd = 'arp -a | findstr "B8-27-EB-8A-F5-2A" ' # Mac Address after findstr
 #     returned_output = subprocess.check_output((cmd),shell=True,stderr=subprocess.STDOUT)
 #     parse=str(returned_output).split(' ',1)
 #     ip=parse[1].split(' ')
@@ -15,15 +15,18 @@ import subprocess
 # Sends array of points to RPI robot through IP host
 # Param points: list
 def sendToRPI(points):
-    mac="B8:27:EB:8A:F5:2A"
+    '''Using Bluetooth Connection'''
+    # mac="B8:27:EB:8A:F5:2A" # RPI 3B
+    mac="08:BE:AC:35:8A:B4" # RPI 2
     port = 1
     with socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM) as s:
         s.connect((mac,port))
         print('connected to RPI')
         data=pickle.dumps(points)
         s.sendall(data)
-    # host='192.168.0.205'
-    # host = "10.19.143.27" # UW IP Address
+
+    '''Using IP Connection'''
+    # host=getIp()
     # print(host)
     # port = 6677 # Same port as inputted on RPI
     # with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -55,8 +58,10 @@ def transform(oldPoints):
     points=[]
     newPoints=[]
     maxmax=0
-    scale=100
-    xorigin, yorigin=oldPoints[0][0]
+    minmin=9999
+    scale=20
+    xorigin = min([coord[0] for path in oldPoints for coord in path if coord[0] < minmin])
+    yorigin = min([coord[1] for path in oldPoints for coord in path if coord[1] < minmin])
     for path in oldPoints:
         newPath=[]
         for coord in path:
@@ -80,43 +85,38 @@ def getPoints(fileName, param=0):
         oldPoints = svg_to_points(fileName)[2:-6]
         for path in oldPoints:
             points.append(oset(path))
-        points=transform(points)
-        sendToRPI(points)
+        points=transform(points)[:-1]
+        # sendToRPI(points)
     elif 'Brownian' in fileName:
         oldPoints = svg_to_points(fileName)
         for path in oldPoints:
             if len(path) == param*2-2: # Correct path; Param = Modb
                 points.append(oset(path))
         points=transform(points)
-        sendToRPI(points)
+        # sendToRPI(points)
     elif 'Sierpinski' in fileName:
         oldPoints = svg_to_points(fileName)
         oldPoints=rdl(oldPoints)
-        for path in oldPoints[0:14]: # [0:14] for lower order
+        for path in oldPoints[0:14]: # [0:14] to remove smallest triangles
             path=[path[0], path[1], path[4], path[5]]
             points.append(path)
         points=transform(points)
-        sendToRPI(points)
+        # sendToRPI(points)
     elif 'Koch' in fileName:
         oldPoints = svg_to_points(fileName)[2:-5]
         oldPoints = oset(oldPoints[0])
         points=oldPoints[(len(oldPoints)+1)//2:]+oldPoints[:(len(oldPoints)+1)//2]
         points.append(points[0])
         points=transform([points])
-        sendToRPI(points)
+        # sendToRPI(points)
     elif 'Fib' in fileName:
         points=transform([param])
-        sendToRPI(points)
+        # sendToRPI(points)
     elif 'Lissajous' in fileName:
         points = svg_to_points(fileName)[2]
         points = [oset(points)]
         points=transform(points)
-        sendToRPI(points)
+        # sendToRPI(points)
     elif 'Voronoi' in fileName:
         points=transform(param)
-        sendToRPI(points)
-    # elif 'Fern' in fileName:
-    #     oldPoints = svg_to_points(fileName)
-    #     for path in oldPoints:
-    #         points.append(oset(path))
-    #     return points
+        # sendToRPI(points)

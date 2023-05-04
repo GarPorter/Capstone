@@ -57,8 +57,6 @@ with c1:
         plt.text(-0.5, -6.2, 'Start', fontsize=15, zorder=101)
     st.write(plot)
 
-''''''
-
 st.subheader('References')
 st.write('''
 - https://en.wikipedia.org/wiki/Koch_snowflake
