@@ -24,3 +24,5 @@ To run the app, you'll need to follow these steps:
 Note: You can adjust the size of the print by scaling the points in the Transform function in `Backend/SendData.py`
 Note: You may need to adjust the motorRun port parameter in set_wheel_speed in `RPI/Movement.py` based on which port each motor is plugged into.
 Use the follow graphic as a reference:
+
+![MegaPi Board Ports](https://github.com/GarPorter/Capstone/blob/Streamlit/Images/megapi.jpg?raw=true)
