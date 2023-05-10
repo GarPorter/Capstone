@@ -17,7 +17,7 @@ To run the app, you'll need to follow these steps:
 4. Connect your Raspberry Pi to your computer via Bluetooth.
 5. Open the `Backend/SendData.py` file and change line 19/20 to the MAC address of your Raspberry Pi.
 6. Open your web browser and navigate to `http://localhost:8501` to view the app.
-7. On your Raspberry Pi, run the `RPI/Movement.py` file.
+7. On your Raspberry Pi, uncomment and run the `RPI/Movement.py` file.
 8. Once you have chosen a pattern, press the print button to send the data to the robot.
 9. Click the button on the robot to start the print!
 
