@@ -36,3 +36,18 @@ asynchronous observations, but also enable agile closed-loop operations under re
 constraints.''')
 st.header('Team')
 st.write('Boris Popov | Garrett Porter | Alejandro Martin-Villa')
+st.write('---')
+st.subheader("_Note: printing only works if app is run locally_")
+st.write('''In order to be able to print:
+1) Clone the [github repository](https://github.com/GarPorter/Capstone) to your local machine
+2) Install the required Python packages by running `pip install -r requirements.txt`.
+3) Run the app using the command `streamlit run Test.py` or `python -m streamlit run Test.py`.
+4) Connect your Raspberry Pi to your computer via Bluetooth.
+5) Open the `Backend/SendData.py` file and change line 19/20 to the MAC address of your Raspberry Pi.
+6) Open your web browser and navigate to `http://localhost:8501` to view the app.
+7) On your Raspberry Pi, uncomment and run the `RPI/Movement.py` file.
+8) Once you have chosen a pattern, press the print button to send the data to the robot.
+9) On the robot, click the button to start the print!
+
+Note: You can adjust the size of the print by scaling the points in the Transform function in `Backend/SendData.py`
+''')
