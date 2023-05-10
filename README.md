@@ -19,6 +19,6 @@ To run the app, you'll need to follow these steps:
 6. Open your web browser and navigate to `http://localhost:8501` to view the app.
 7. On your Raspberry Pi, run the `RPI/Movement.py` file.
 8. Once you have chosen a pattern, press the print button to send the data to the robot.
-9. On the robot, click the button to start the print!
+9. Click the button on the robot to start the print!
 
 Note: You can adjust the size of the print by scaling the points in the Transform function in `Backend/SendData.py`
