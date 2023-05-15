@@ -35,7 +35,7 @@ def sendToRPI(points):
     #     data = pickle.dumps(points)
     #     s.sendall(data)
 
-# Remove duplicate from set but keep order
+# Remove duplicates from list but keep order
 # Param seq: list
 # Returns list
 def oset(seq):
@@ -59,7 +59,7 @@ def transform(oldPoints):
     newPoints=[]
     maxmax=0
     minmin=9999
-    scale=20
+    scale=10
     xorigin = min([coord[0] for path in oldPoints for coord in path if coord[0] < minmin])
     yorigin = min([coord[1] for path in oldPoints for coord in path if coord[1] < minmin])
     for path in oldPoints:
@@ -90,7 +90,7 @@ def getPoints(fileName, param=0):
     elif 'Brownian' in fileName:
         oldPoints = svg_to_points(fileName)
         for path in oldPoints:
-            if len(path) == param*2-2: # Correct path; Param = Modb
+            if len(path) == param*2-2: # Find Correct path; Param = Modb
                 points.append(oset(path))
         points=transform(points)
         # sendToRPI(points)
@@ -118,5 +118,8 @@ def getPoints(fileName, param=0):
         points=transform(points)
         # sendToRPI(points)
     elif 'Voronoi' in fileName:
+        points=transform(param)
+        # sendToRPI(points)
+    elif 'Shapes' in fileName:
         points=transform(param)
         # sendToRPI(points)

@@ -9,6 +9,7 @@ from st_pages import Page, show_pages
 show_pages(
     [
         Page("Test.py", "Welcome", ":house:"),
+        Page("pages/Shapes.py", "Simple Shapes", ":large_green_circle:"),
         Page("pages/Lissajous.py", "Lissajous", ":curly_loop:"),
         Page("pages/Koch_Snowflake.py", "Koch Snowflake", ":snowflake:"),
         Page("pages/The_Chaos_Game.py", "Chaos Game", ":space_invader:"),
