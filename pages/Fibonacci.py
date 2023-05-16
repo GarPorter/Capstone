@@ -27,8 +27,12 @@ st.write('''The Fibonacci spiral can be used in wind turbine design to optimize 
        The length and angle of attack of the blades can also be determined using the Fibonacci sequence,
          resulting in a blade shape that is optimized for different wind speeds.''')
 
+col1, col2 = st.columns([9, 1.2])
+with col1:
+  st.subheader('Try it Yourself!')
+with col2:
+  toggle = st.select_slider('Animation?', ['Yes', 'No'])
 
-st.subheader('Try it Yourself!')
 nums = st.slider('Number of Fibonacci Numbers', 2, 15, 4)
 
 # Generates the first n Fibonacci numbers in an array
@@ -43,7 +47,6 @@ def genFibo(n):
   return nums
 
 c1, c2 = st.columns([9, 1])
-
 with c1:
   # Fibonacci sequence, x, and y arrays
   fa = genFibo(nums)[2:]
@@ -52,6 +55,9 @@ with c1:
 
   # Create initial plot with margins, autoscaling, and first two squares
   fig, ax = plt.subplots()
+  if toggle == 'No':
+    blocker = Rectangle((-1000, -1000), 2000, 2000, linewidth=1, edgecolor='white', facecolor='white', zorder=10)
+    bl = ax.add_patch(blocker)
   plt.xticks([])
   plt.yticks([])
   ax.axis('equal')
@@ -62,20 +68,13 @@ with c1:
 
   the_plot = st.pyplot(plt)
 
-  # Plots each square in the Fibonacci Spiral
-  # Param: i (int) index
-  # Param: x (array) array of x values
-  # Param: y (array) array of y values
-  def animate(i, x, y):
-    plt.autoscale()
-    ax.add_patch(Rectangle((x[i],y[i]), fa[i], fa[i], fc='None', ec='k'))
-    the_plot.pyplot(plt)
-
   # Adds delay to drawing of squares and calls animate function
   for i in range(nums-2):
-      time.sleep(0.5)
-      animate(i, x, y)
-
+      plt.autoscale()
+      ax.add_patch(Rectangle((x[i],y[i]), fa[i], fa[i], fc='None', ec='k'))
+      if toggle == 'Yes':
+        time.sleep(0.5)
+      the_plot.pyplot(plt)
   patches=[]
 
   # First two curves
@@ -85,24 +84,24 @@ with c1:
           [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
       fc="none", ec='r', transform=ax.transData)
 
-  ax.add_patch(pp1)
-  the_plot.pyplot(plt)
-  patches.append(pp1)
-
-  pp1 = mpatches.PathPatch(
+  pp2 = mpatches.PathPatch(
       Path([(0, 0), (1, 0), (1, 1)],
           [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
       fc="none", ec='r', transform=ax.transData)
 
   ax.add_patch(pp1)
   the_plot.pyplot(plt)
+
+  ax.add_patch(pp2)
+  the_plot.pyplot(plt)
+
   patches.append(pp1)
+  patches.append(pp2)
 
   p1 = (1, 1)
 
   # Plotting curve
   for i in range(len(fa)):
-    time.sleep(0.25)
   # alternate between - +, - -, + -, + +
     if i % 4 == 0:
       p2 = (p1[0]-fa[i], p1[1]+fa[i])
@@ -127,9 +126,30 @@ with c1:
 
     p1 = p2
 
+    if toggle == 'Yes':
+      time.sleep(0.25)
     ax.add_patch(pp1)
     the_plot.pyplot(plt)
     patches.append(pp1)
+
+  plot_limits= [[(-1.6774891774891776, 1.6774891774891776), (-0.75, 1.75)], [(-2.5, 2.5),
+         (-0.3629032258064515, 3.3629032258064515)], [(-6.532467532467533, 3.5324675324675328),
+         (-2.25, 5.25)], [(-7.75, 4.75), (-5.657258064516129, 3.657258064516129)],
+         [(-10.91991341991342, 15.91991341991342), (-11.0, 9.0)], [(-13.75, 18.75),
+         (-6.608870967741934, 17.608870967741936)], [(-43.22727272727273, 27.227272727272727),
+         (-20.75, 31.75)], [(-50.5, 34.5), (-43.16935483870968, 20.169354838709676)],
+         [(-72.76190476190477, 111.76190476190477), (-80.25, 57.25)], [(-91.75, 130.75),
+         (-49.89919354838709, 115.89919354838709)], [(-294.0584415584416, 189.05844155844156),
+         (-147.0, 213.0)], [(-343.75, 238.75), (-300.5282258064516, 133.5282258064516)],
+         [(-496.41341991341994, 768.41341991342), (-554.75, 387.75)], [(-626.5, 898.5),
+         (-346.6854838709677, 789.6854838709677)]]
+
+  # Static Plot
+  if toggle == 'No':
+    bl.remove()
+    plt.xlim(plot_limits[nums-2][0][0], plot_limits[nums-2][0][1])
+    plt.ylim(plot_limits[nums-2][1][0], plot_limits[nums-2][1][1])
+    the_plot.pyplot(plt)
 
 with c2:
   ''
