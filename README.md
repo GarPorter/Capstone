@@ -7,6 +7,9 @@ The app is built using the Streamlit Python library and communicates with the Ra
 
 Once a pattern is selected, the app sends an array of points to the Raspberry Pi robot, which uses a movement algorithm to follow the desired path, accelerating and deccelerating when necessary. The user can then watch as the pattern is drawn in real time.
 
+## Website
+https://capstoneproject.streamlit.app/
+
 ## How to Run the App
 
 To run the app, you'll need to follow these steps:
