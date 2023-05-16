@@ -39,7 +39,7 @@ fig = voronoi_plot_2d(vor)
 
 c1, c2 = st.columns([9, 1])
 clicked=False
-points=[]
+plotpoints=[]
 # Column containing button
 with c2:
   ''
@@ -54,7 +54,7 @@ with c2:
     for ps in st.session_state.pointsArr:
       points.insert(0, [tuple(ps.tolist())])
 
-    getPoints('SVG/Voronoi.svg', points)
+    plotpoints=getPoints('SVG/Voronoi.svg', points)
     st.balloons()
   else:
     st.session_state.fig = fig
@@ -71,6 +71,25 @@ with c1:
     st.write(st.session_state.fig)
   else:
     st.write(fig)
+
+if clicked:
+  st.subheader('The Path being Printed')
+  st.write('''Below are the points constituting the path being transmitted to the robot, starting from the red dot.
+            The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
+            However, due to the robot's linear interpolation between the points, there may be slight discrepancies
+            between the exact pattern and the actual drawing. The individual paths are labeled below''')
+  # Plot points
+  fig, ax = plt.subplots()
+  plt.xticks([])
+  plt.yticks([])
+  for i, path in enumerate(plotpoints):
+      x, y = zip(*path)
+      ax.plot(x, y)
+      ax.scatter(x, y, s=25)
+      if i == 0:
+        ax.scatter(x[0], y[0], c='red', zorder=10)
+  ax.set_aspect('equal')
+  st.pyplot(fig)
 
 plt.close()
 

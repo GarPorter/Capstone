@@ -151,19 +151,40 @@ with c1:
     plt.ylim(plot_limits[nums-2][1][0], plot_limits[nums-2][1][1])
     the_plot.pyplot(plt)
 
+clicked=False
+points=[]
 with c2:
   ''
   ''
   ''
   # Convert matplotlib patches to array of points
   if st.button('Print'):
+    clicked=True
     points = []
     for patch in patches:
       vertices = patch.get_verts()
-      for vertex in vertices:
+      for vertex in vertices[:-1]:
         points.append((round(vertex[0], 2), round(vertex[1], 2)))
-    getPoints('Fib', points)
+    points=getPoints('Fib', points)
     st.balloons()
+
+if clicked:
+  st.subheader('The Path being Printed')
+  st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
+            The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
+            However, due to the robot's linear interpolation between the points, there may be slight discrepancies
+            between the exact pattern and the actual drawing.''')
+  # Plot points
+  fig, ax = plt.subplots()
+  plt.xticks([])
+  plt.yticks([])
+  for path in points:
+      x, y = zip(*path)
+      ax.plot(x, y)
+      ax.scatter(x, y)
+  ax.scatter(x[0], y[0], c='red', zorder=10)
+  ax.set_aspect('equal')
+  st.pyplot(fig)
 
 # Adds example and removes fade when reloading
 st.markdown("<style>.element-container{opacity:1 !important}</style>", unsafe_allow_html=True)

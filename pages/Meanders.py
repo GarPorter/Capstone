@@ -29,6 +29,7 @@ pt = st.slider("Number of Points", 2, 10, 3)
 c1, c2 = st.columns([9, 1])
 plot, firstx = createPlot(pt)
 clicked=False
+points=[]
 # Column containing button
 with c2:
   ''
@@ -37,7 +38,7 @@ with c2:
   if st.button('Print'):
     clicked = True
     st.session_state.plot.savefig('SVG/Meander.svg', format='svg', dpi=100)
-    getPoints('SVG/Meander.svg')
+    points=getPoints('SVG/Meander.svg')
     st.balloons()
   else:
     st.session_state.plot = plot
@@ -52,6 +53,24 @@ with c1:
     st.write(st.session_state.plot)
   else:
     st.write(plot)
+
+if clicked:
+  st.subheader('The Path being Printed')
+  st.write('''Below are the points constituting the path being transmitted to the robot, starting from the red dot.
+            The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
+            However, due to the robot's linear interpolation between the points, there may be slight discrepancies
+            between the exact pattern and the actual drawing.''')
+  # Plot points
+  fig, ax = plt.subplots()
+  plt.xticks([])
+  plt.yticks([])
+  for i, path in enumerate(points):
+      x, y = zip(*path)
+      ax.plot(x, y)
+      ax.scatter(x, y, s=10)
+      if i == 0:
+        ax.scatter(x[0], y[0], c='red', zorder=10)
+  st.pyplot(fig)
 
 plt.close()
 

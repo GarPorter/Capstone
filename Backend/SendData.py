@@ -87,6 +87,7 @@ def getPoints(fileName, param=0):
             points.append(oset(path))
         points=transform(points)[:-1]
         # sendToRPI(points)
+        return points
     elif 'Brownian' in fileName:
         oldPoints = svg_to_points(fileName)
         for path in oldPoints:
@@ -94,6 +95,7 @@ def getPoints(fileName, param=0):
                 points.append(oset(path))
         points=transform(points)
         # sendToRPI(points)
+        return points
     elif 'Sierpinski' in fileName:
         oldPoints = svg_to_points(fileName)
         oldPoints=rdl(oldPoints)
@@ -102,6 +104,7 @@ def getPoints(fileName, param=0):
             points.append(path)
         points=transform(points)
         # sendToRPI(points)
+        return points
     elif 'Koch' in fileName:
         oldPoints = svg_to_points(fileName)[2:-5]
         oldPoints = oset(oldPoints[0])
@@ -109,17 +112,21 @@ def getPoints(fileName, param=0):
         points.append(points[0])
         points=transform([points])
         # sendToRPI(points)
+        return points
     elif 'Fib' in fileName:
         points=transform([param])
         # sendToRPI(points)
+        return points
     elif 'Lissajous' in fileName:
         points = svg_to_points(fileName)[2]
         points = [oset(points)]
         points=transform(points)
         # sendToRPI(points)
+        return points
     elif 'Voronoi' in fileName:
         points=transform(param)
         # sendToRPI(points)
+        return points
     elif 'Shapes' in fileName:
         points=transform(param)
         # sendToRPI(points)

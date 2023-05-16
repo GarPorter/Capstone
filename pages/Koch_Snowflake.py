@@ -27,7 +27,7 @@ The Koch snowflake can be applied in the real world in a variety of ways, includ
      phenomena such as diffusion-limited aggregation and pattern formation in nature.''')
 
 st.subheader('Try it Yourself!')
-st.write('_Note: Printing is only available up to order 4_')
+st.write('_Note: Printing is only available up to order 3_')
 ord = st.slider("Pick Order of Snowflake", 1, 8, 3, key = "<three>")
 
 x, y = koch_snowflake(order=ord)
@@ -38,9 +38,10 @@ plt.yticks([])
 plt.axis('equal')
 plt.fill(x, y)
 
-clicked=False
 c1, c2 = st.columns([9, 1])
-if ord < 5:
+clicked=False
+points=[]
+if ord < 4:
     with c2:
         ''
         ''
@@ -48,7 +49,7 @@ if ord < 5:
         if st.button('Print'):
             clicked=True
             plot.savefig('SVG/Koch.svg', format='svg', dpi=100)
-            getPoints('SVG/Koch.svg')
+            points=getPoints('SVG/Koch.svg')
             st.balloons()
 
 with c1:
@@ -56,6 +57,24 @@ with c1:
         plt.scatter(0, -5.75, c='red', zorder=100)
         plt.text(-0.5, -6.2, 'Start', fontsize=15, zorder=101)
     st.write(plot)
+
+if clicked:
+  st.subheader('The Path being Printed')
+  st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
+            The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
+            However, due to the robot's linear interpolation between the points, there may be slight discrepancies
+            between the exact pattern and the actual drawing.''')
+  # Plot points
+  fig, ax = plt.subplots()
+  plt.xticks([])
+  plt.yticks([])
+  for path in points:
+      x, y = zip(*path)
+      ax.plot(x, y)
+      ax.scatter(x, y)
+  ax.scatter(x[0], y[0], c='red', zorder=10)
+  ax.set_aspect('equal')
+  st.pyplot(fig)
 
 st.subheader('References')
 st.write('''
