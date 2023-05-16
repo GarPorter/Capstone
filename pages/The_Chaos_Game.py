@@ -94,6 +94,12 @@ with c2:
     points=getPoints('SVG/Sierpinski.svg')
     st.balloons()
 
+if type(x) is not list or type(y) is not list:
+  st.session_state.x = [0]
+  st.session_state.y = [0]
+  x = [0]
+  y = [0]
+
 plot = plt.figure(figsize=(8, 8))
 plt.axis()
 plt.text(-3.2, 0.05, 'A', fontsize=20)
