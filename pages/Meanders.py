@@ -2,6 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from Backend.MeandersAlgo import *
 from Backend.SendData import getPoints
+from matplotlib.artist import Artist
 
 st.title('Open Meander Curves')
 st.write('''
@@ -23,6 +24,12 @@ the distributed inductance and capacitance of the meander line can be adjusted b
 changing the size and shape of the segments, making it a highly customizable component.
 ''')
 
+fig, ax = plt.subplots()
+plt.xticks([])
+plt.yticks([])
+if 'start_text' not in st.session_state:
+  st.session_state.start_text=ax.text(0, 0, 'start')
+
 st.subheader('Try it Yourself!')
 pt = st.slider("Number of Points", 2, 10, 3)
 
@@ -37,6 +44,7 @@ with c2:
   ''
   if st.button('Print'):
     clicked = True
+    Artist.remove(st.session_state.start_text)
     st.session_state.plot.savefig('SVG/Meander.svg', format='svg', dpi=100)
     points=getPoints('SVG/Meander.svg')
     st.balloons()
@@ -48,8 +56,8 @@ with c2:
 # Dsiplays old plot if button is clicked otherwise creates new plot
 with c1:
   if clicked:
-    ax=st.session_state.plot.gca()
-    ax.text(st.session_state.firstx-0.4, 0.05, 'Start', fontsize=12)
+    ax2=st.session_state.plot.gca()
+    st.session_state.start_text=ax2.text(st.session_state.firstx-0.4, 0.05, 'Start', fontsize=12)
     st.write(st.session_state.plot)
   else:
     st.write(plot)
@@ -60,10 +68,8 @@ if clicked:
             The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
             However, due to the robot's linear interpolation between the points, there may be slight discrepancies
             between the exact pattern and the actual drawing.''')
+
   # Plot points
-  fig, ax = plt.subplots()
-  plt.xticks([])
-  plt.yticks([])
   for i, path in enumerate(points):
       x, y = zip(*path)
       ax.plot(x, y)

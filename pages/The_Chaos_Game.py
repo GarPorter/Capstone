@@ -5,8 +5,8 @@ from Backend.SendData import *
 
 # Initialize x and y arrays to zero
 if 'x' not in st.session_state or 'y' not in st.session_state:
-  st.session_state['x'] = [0]
-  st.session_state['y'] = [0]
+  st.session_state.x = [0]
+  st.session_state.y = [0]
 
 x = st.session_state.x
 y = st.session_state.y
@@ -76,8 +76,8 @@ with col[4]:
 # When Clear is pressed remove all points
 with col[6]:
   if st.button('Clear'):
-    st.session_state['x'] = [0]
-    st.session_state['y'] = [0]
+    st.session_state.x = [0]
+    st.session_state.y = [0]
     x = [0]
     y = [0]
 
@@ -114,6 +114,7 @@ if clicked:
             The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
             However, due to the robot's linear interpolation between the points, there may be slight discrepancies
             between the exact pattern and the actual drawing. The individual paths are labeled below''')
+
   # Plot points
   fig, ax = plt.subplots()
   plt.xticks([])
