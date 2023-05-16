@@ -65,6 +65,7 @@ with c1:
   if toggle == 'No':
     blocker = Rectangle((-1000, -1000), 2000, 2000, linewidth=1, edgecolor='white', facecolor='white', zorder=10)
     bl = ax.add_patch(blocker)
+
   plt.xticks([])
   plt.yticks([])
   ax.axis('equal')
@@ -81,7 +82,7 @@ with c1:
       ax.add_patch(Rectangle((x[i],y[i]), fa[i], fa[i], fc='None', ec='k'))
       if toggle == 'Yes':
         time.sleep(0.5)
-      the_plot.pyplot(plt)
+        the_plot.pyplot(plt)
   patches=[]
 
   # First two curves
@@ -97,10 +98,12 @@ with c1:
       fc="none", ec='r', transform=ax.transData)
 
   ax.add_patch(pp1)
-  the_plot.pyplot(plt)
+  if toggle == 'Yes':
+    the_plot.pyplot(plt)
 
   ax.add_patch(pp2)
-  the_plot.pyplot(plt)
+  if toggle == 'Yes':
+    the_plot.pyplot(plt)
 
   patches.append(pp1)
   patches.append(pp2)
@@ -133,10 +136,12 @@ with c1:
 
     p1 = p2
 
+    ax.add_patch(pp1)
+
     if toggle == 'Yes':
       time.sleep(0.25)
-    ax.add_patch(pp1)
-    the_plot.pyplot(plt)
+      the_plot.pyplot(plt)
+
     patches.append(pp1)
 
   plot_limits= [[(-1.6774891774891776, 1.6774891774891776), (-0.75, 1.75)], [(-2.5, 2.5),
