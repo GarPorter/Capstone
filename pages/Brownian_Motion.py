@@ -3,8 +3,6 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from Backend.SendData import *
 
-clicked=False
-
 st.header("Brownian Motion")
 st.write('''Brownian motion aims to quantify the random motion of particles
             suspended in a medium. Utilizing Gaussian distribution we can track
@@ -55,7 +53,6 @@ def brownianMotion(modA):
 
     '''
     timeSteps = np.linspace(0, 10, modA)
-    print(modA)
     dt = timeSteps[1] - timeSteps[0]
     diffBrown = np.sqrt(dt) * np.random.normal(0, dt, modA-1)
     initialBrown = np.zeros(1)
@@ -92,35 +89,6 @@ with c1:
     st.write(st.session_state.figure3)
   else:
     st.write(figure3)
-
-fig, ax = plt.subplots()
-plt.xticks([])
-plt.yticks([])
-for path in points:
-    x, y = zip(*path)
-    ax.plot(x, y)
-    ax.scatter(x, y)
-ax.scatter(x[0], y[0], c='red', zorder=10)
-ax.set_aspect('equal')
-st.pyplot(fig)
-
-if clicked:
-  st.subheader('The Path being Printed')
-  st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
-            The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
-            However, due to the robot's linear interpolation between the points, there may be slight discrepancies
-            between the exact pattern and the actual drawing.''')
-  # Plot points
-  fig, ax = plt.subplots()
-  plt.xticks([])
-  plt.yticks([])
-  for path in points:
-      x, y = zip(*path)
-      ax.plot(x, y)
-      ax.scatter(x, y)
-  ax.scatter(x[0], y[0], c='red', zorder=10)
-  ax.set_aspect('equal')
-  st.pyplot(fig)
 
 if clicked:
   st.subheader('The Path being Printed')
