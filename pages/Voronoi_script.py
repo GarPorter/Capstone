@@ -73,7 +73,7 @@ with c1:
     st.write(fig)
 
 if clicked:
-  st.subheader('The Path being Printed')
+  st.header('The Path being Printed')
   st.write('''Below are the points constituting the path being transmitted to the robot, starting from the red dot.
             The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
             However, due to the robot's linear interpolation between the points, there may be slight discrepancies

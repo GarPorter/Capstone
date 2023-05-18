@@ -50,9 +50,9 @@ def aizawa_attractor(x,y,z,a=0.95,b=0.7,c=0.6,d=3.5,e=0.25,f=0.1):
 
 
 #def _attractor(x,y,z):
-#    x_dot = 
-#    y_dot = 
-#    z_dot = 
+#    x_dot =
+#    y_dot =
+#    z_dot =
 #    return x_dot, y_dot, z_dot
 
 # Computes results
@@ -73,21 +73,21 @@ def simulate_chaos(attractor_function, steps=10000, dt=0.01):
 
 # Streamlit app
 st.title("Chaos Equation Demonstrations")
-st.write('''Chaos equation attractors are mathematical constructs that describe the 
-        behavior of chaotic systems. Attractors can be stable, meaning 
-        that the system will eventually converge to a fixed point or limit cycle, or 
-        they can be chaotic, meaning that the system will exhibit sensitive dependence 
-        on initial conditions and will never converge to a fixed point.Chaotic systems 
-        are systems that exhibit seemingly random behavior, but which actually follow 
-        deterministic rules. These attractors can be used to describe the behavior of 
+st.write('''Chaos equation attractors are mathematical constructs that describe the
+        behavior of chaotic systems. Attractors can be stable, meaning
+        that the system will eventually converge to a fixed point or limit cycle, or
+        they can be chaotic, meaning that the system will exhibit sensitive dependence
+        on initial conditions and will never converge to a fixed point.Chaotic systems
+        are systems that exhibit seemingly random behavior, but which actually follow
+        deterministic rules. These attractors can be used to describe the behavior of
         many natural systems, including weather patterns, fluid flow, and the behavior
         of populations in ecological systems.''')
 
-st.subheader("Try it Yourself!")
+st.header("Try it Yourself!")
 st.write('''There are many systems that exhibit chaotic traits. Check out the following systems
         and change the parameters to see the behaviour of the solution curves.''')
 
-st.write('''To witness the motion that the sytems behave in, create your designs and hit print for a special 
+st.write('''To witness the motion that the sytems behave in, create your designs and hit print for a special
         robotic demonstration!''')
 
 # Dropdown menu to select the attractor

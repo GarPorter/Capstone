@@ -3,7 +3,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from Backend.SendData import *
 
-st.header("Brownian Motion")
+st.title("Brownian Motion")
 st.write('''Brownian motion aims to quantify the random motion of particles
             suspended in a medium. Utilizing Gaussian distribution we can track
             the motion of a particle through a medium''')
@@ -24,10 +24,10 @@ gaussDist = (1/np.sqrt(2*np.pi*(sd**2))) * np.exp(-((x1-mean)**2)/(2*(sd**2)))
 figure1, axes1 = plt.subplots()
 axes1.plot(x1,gaussDist)
 st.write(figure1)
-  
+
 
 st.write('''Now that we have a bit more understanding on what Gaussian distribution is
-            Lets look at what happens when we plot two sets of random numbers. 
+            Lets look at what happens when we plot two sets of random numbers.
             Imagine the red dot is a particle at the origin (0,0)
             What we see is a random data set where each point in the data set
             Is a random offset from the origin (0,0) (marked in red)
@@ -43,12 +43,12 @@ axes2.plot(0,0, 'ro')
 st.write(figure2)
 
 
-st.write('''What if we want the particle to move in a random direction continuously, and not just from the origin? 
+st.write('''What if we want the particle to move in a random direction continuously, and not just from the origin?
             We can simply use the particles previous location and add the new random direction, causing the particle
             to take a 'step' in that direction.''')
 
 def brownianMotion(modA):
-    '''simulate and return an array of random "steps" 
+    '''simulate and return an array of random "steps"
     according to brownian motion theory
 
     '''
@@ -91,7 +91,7 @@ with c1:
     st.write(figure3)
 
 if clicked:
-  st.subheader('The Path being Printed')
+  st.header('The Path being Printed')
   st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
             The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
             However, due to the robot's linear interpolation between the points, there may be slight discrepancies

@@ -5,8 +5,7 @@ from Backend.Koch import *
 from Backend.SendData import *
 from Backend.SvgToPoints import *
 
-st.title("Testing out Push to GitHub and Streamlit app")
-st.write("Lissajous Curve")
+st.title("Lissajous Curve")
 
 
 Moda = st.slider("Pick Value for a", 1, 10, 3, key = "<one>")
@@ -41,7 +40,7 @@ with c1:
     st.write(figure)
 
 if clicked:
-    st.subheader('The Path being Printed')
+    st.header('The Path being Printed')
     st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
             The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
             However, due to the robot's linear interpolation between the points, there may be slight discrepancies

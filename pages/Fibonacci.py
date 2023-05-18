@@ -7,7 +7,7 @@ import time
 from PIL import Image
 from Backend.SendData import getPoints
 
-st.header('Fibonacci Spiral')
+st.title('Fibonacci Spiral')
 
 st.write('''The Fibonacci spiral is a geometric pattern that occurs naturally in various
  aspects of the natural world, including the arrangement of leaves on a stem, the shape
@@ -19,14 +19,14 @@ The math behind the Fibonacci spiral is based on the Fibonacci sequence, which i
    13, 21, 34, 55, 89, 144, and so on. The sequence continues infinitely, with each new
      number being the sum of the two previous numbers.
 ''')
-st.subheader('Examples')
+st.header('Examples')
 left, right = st.columns([5, 6])
 with left:
   st.image(Image.open('Images/Pinecone_Fibonacci.jpg'), caption='Fibonacci in a Pinecone')
 with right:
   st.image(Image.open('Images/Galaxy_Fibonacci.jpg'), caption='Fibonacci in a Spiral Galaxy')
 
-st.subheader('Application')
+st.header('Application')
 st.write('''The Fibonacci spiral can be used in wind turbine design to optimize the shape,
  length, and angle of the blades, which can improve the efficiency and performance of the
    turbine. By using the Fibonacci sequence and spiral, engineers can create blade shapes
@@ -36,7 +36,7 @@ st.write('''The Fibonacci spiral can be used in wind turbine design to optimize 
 
 col1, col2 = st.columns([9, 1.2])
 with col1:
-  st.subheader('Try it Yourself!')
+  st.header('Try it Yourself!')
 with col2:
   toggle = st.select_slider('Animation?', ['No', 'Yes'])
 
@@ -181,7 +181,7 @@ with c2:
     st.balloons()
 
 if clicked:
-  st.subheader('The Path being Printed')
+  st.header('The Path being Printed')
   st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
             The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
             However, due to the robot's linear interpolation between the points, there may be slight discrepancies

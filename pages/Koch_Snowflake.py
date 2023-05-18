@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from Backend.Koch import *
 from Backend.SendData import *
 
-st.header("Koch Snowflake")
+st.title("Koch Snowflake")
 st.write('''The Koch snowflake is a fractal shape that is formed by repeatedly
 adding smaller equilateral triangles to the sides of an initial equilateral triangle.
  Each of these smaller triangles is then subjected to the same process, resulting in
@@ -17,7 +17,7 @@ The math behind the Koch snowflake involves a few key concepts, including self-s
    iteration means that the snowflake can be infinitely detailed, with an infinite perimeter
     but a finite area.''')
 
-st.subheader('Application')
+st.header('Application')
 st.write('''
 The Koch snowflake can be applied in the real world in a variety of ways, including
  in the design of coastlines, the development of antennas and other communication devices,
@@ -26,7 +26,7 @@ The Koch snowflake can be applied in the real world in a variety of ways, includ
     Additionally, the fractal nature of the snowflake has been used as a model for studying
      phenomena such as diffusion-limited aggregation and pattern formation in nature.''')
 
-st.subheader('Try it Yourself!')
+st.header('Try it Yourself!')
 st.write('_Note: Printing is only available up to order 3_')
 ord = st.slider("Pick Order of Snowflake", 1, 8, 3, key = "<three>")
 

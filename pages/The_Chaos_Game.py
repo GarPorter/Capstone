@@ -11,14 +11,14 @@ if 'x' not in st.session_state or 'y' not in st.session_state:
 x = st.session_state.x
 y = st.session_state.y
 
-st.header("The Chaos Game")
+st.title("The Chaos Game")
 st.write('''The Chaos Game is a method of generating fractal patterns using a
  simple set of rules. It involves randomly selecting a point on a plane and then
  repeatedly applying a simple transformation to it, such as plotting another point
  at half the distance to a selected vertex in an equilateral triangle. The result
  is the Sierpinski Triangle.''')
 
-st.subheader('Application')
+st.header('Application')
 st.write('''
  The Sierpinski triangle's unique self-similar properties make it a valuable tool
  in image compression. By using the triangle to represent an image as a set of triangles,
@@ -28,7 +28,7 @@ st.write('''
  the image to be stored and transferred more efficiently. The simplicity and
  versatility of the Sierpinski triangle make it an ideal tool for image compression.''')
 
-st.subheader('Try it Yourself!')
+st.header('Try it Yourself!')
 st.write('_Note: The Printing start at Point C_')
 st.write('Pick a random Vertex or skip forward 1000 steps')
 
@@ -115,7 +115,7 @@ with c1:
   st.write(plot)
 
 if clicked:
-  st.subheader('The Path being Printed')
+  st.header('The Path being Printed')
   st.write('''Below are the points constituting the path being transmitted to the robot, starting from the red dot.
             The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
             However, due to the robot's linear interpolation between the points, there may be slight discrepancies
