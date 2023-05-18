@@ -16,10 +16,11 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def set_wheel_speeds(front_left, front_right, rear_left, rear_right):
-    bot.motorRun(M2, int(rear_left*1.20))
-    bot.motorRun(1, int(rear_right*1.07))
+		# If neccessary multiply speeds by constants to get matching wheel speeds
+    bot.motorRun(M2, int(rear_left))
+    bot.motorRun(1, int(rear_right))
     bot.motorRun(2, -int(front_left))
-    bot.motorRun(M1, -int(front_right*1.04))
+    bot.motorRun(M1, -int(front_right))
 
 def moveTo(prevPos, currentPos, nextPos):
 	# Define the robot's movement capabilities
