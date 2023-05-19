@@ -18,6 +18,11 @@ st.write('''The Chaos Game is a method of generating fractal patterns using a
  at half the distance to a selected vertex in an equilateral triangle. The result
  is the Sierpinski Triangle.''')
 
+st.header('Examples')
+b, l, r = st.columns([1, 10, 1])
+with l:
+  st.image('Images/sierpinski_example.jpg', 'Fractal first as molecules form Sierpinski triangles')
+
 st.header('Application')
 st.write('''
  The Sierpinski triangle's unique self-similar properties make it a valuable tool
@@ -139,4 +144,9 @@ st.subheader('References')
 st.write('''
 - https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-ipr.2019.0489
 - https://www-users.york.ac.uk/~ss44/complex/compress.htm
+''')
+
+st.subheader('Image Sources')
+st.write('''
+- https://d2cbg94ubxgsnp.cloudfront.net/Pictures/480xAny/0/3/6/88036_fractaltriangles_2b-e_630m.jpg
 ''')
