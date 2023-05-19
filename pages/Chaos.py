@@ -188,7 +188,7 @@ plot_placeholder = st.empty()
 button_pressed = st.button('Start Animation')
 
 if button_pressed:
-    path = getpoints('SVG/Chaos1.svg',points)
+    getpoints('SVG/Chaos1.svg',points)
     for i in range(len(points)):
         ax.cla()  # Clear the previous plot
         ax.set_xlim(-max_x, max_x)  # Set x limits
