@@ -117,7 +117,7 @@ xs, ys, zs = simulate_chaos(attractor_function, steps, dt)
 points = []
 
 #target is a 15 x 15 box
-scale = 15/np.max(np.abs([xs, zs]))
+scale = 1 #15/np.max(np.abs([xs, zs]))
 total_dist = 0
 for i in range(len(xs) - 1):
     xs[i] = scale*xs[i]
@@ -157,7 +157,7 @@ scatter = ax.scatter(xs, zs, c=zs, cmap='inferno', s=1)
 
 # Set the axis limits
 ax.set_xlim(np.min(xs), np.max(xs))
-ax.set_ylim(np.min(ys), np.max(ys))
+ax.set_ylim(np.min(zs), np.max(zs))
 
 # Set the axis labels
 ax.set_xlabel('X')
