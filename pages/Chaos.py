@@ -196,15 +196,15 @@ st.write('''Now to witness the movement of the algorithm through a robotic demon
 button_pressed = st.button('Print')
 
 if button_pressed:
-    getPoints('SVG/Chaos1.svg',points)
-    for i in range(len(points)):
+    getPoints('SVG/Chaos1.svg',path)
+    for i in range(len(path)):
         ax.cla()  # Clear the previous plot
         ax.set_xlim(-max_x, max_x)  # Set x limits
         ax.set_ylim(-max_y, max_y)  # Set y limits
-        ax.plot(points[:i+1, 0], points[:i+1, 1], color='blue', lw=0.5)
+        ax.plot(path[:i+1, 0], path[:i+1, 1], color='blue', lw=0.5)
         # Get the current edge position
-        current_edge_x = points[i, 0]
-        current_edge_y = points[i, 1]
+        current_edge_x = path[i, 0]
+        current_edge_y = path[i, 1]
         
         # Plot a red dot at the current edge position
         ax.plot(current_edge_x, current_edge_y, 'ro')
