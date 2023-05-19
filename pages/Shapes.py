@@ -36,6 +36,7 @@ ax.set_aspect('equal')
 
 shape = st.selectbox('Select a shape', [ 'Circle', 'Ellipse', 'Triangle', 'Rectangle', 'Hexagon', 'Star', 'Heart' ])
 points=[]
+
 if shape == 'Triangle':
   ax.set_aspect('auto')
 if shape == 'Ellipse':
@@ -59,6 +60,7 @@ for path in points:
   x, y = zip(*path)
   ax.scatter(x, y)
   ax.plot(x, y)
+  ax.scatter(x[0], y[0], c='red', zorder=10)
 
 c1, c2 = st.columns([9, 1])
 
