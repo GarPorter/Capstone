@@ -87,7 +87,8 @@ st.write('''There are many systems that exhibit chaotic traits. Check out the fo
         and change the parameters to see the behaviour of the solution curves.''')
 
 st.write('''To witness the motion that the sytems behave in, create your designs and hit print for a special 
-        robotic demonstration!''')
+        robotic demonstration! Note that the actual systems are in 3D but they are being plotted in 2D by the 
+        X and Y axis.''')
 
 # Dropdown menu to select the attractor
 attractor = st.selectbox(
@@ -149,31 +150,36 @@ plt.show()
 
 st.pyplot(fig)
 
-# Create a figure and axis for the scatter plot
-fig1, ax = plt.subplots()
+st.write('''Our robot takes in a data set of the path you want it to follow, hit the following button to create the dataset.''')
 
-# Plot the scatter plot
-scatter = ax.scatter(xs, zs, c=zs, cmap='inferno', s=1)
+# Create a button
+button_pressed1 = st.button('Create Robot Path')
+if button_pressed1:
+    # Create a figure and axis for the scatter plot
+    fig1, ax = plt.subplots()
 
-# Set the axis limits
-ax.set_xlim(np.min(xs), np.max(xs))
-ax.set_ylim(np.min(zs), np.max(zs))
+    # Plot the scatter plot
+    scatter = ax.scatter(xs, zs, c=zs, cmap='inferno', s=1)
 
-# Set the axis labels
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
+    # Set the axis limits
+    ax.set_xlim(np.min(xs), np.max(xs))
+    ax.set_ylim(np.min(zs), np.max(zs))
 
-# Set the title
-ax.set_title('Aizawa Attractor')
+    # Set the axis labels
+    ax.set_xlabel('X')
+    ax.set_ylabel('Z')
 
-# Display the scatter plot
-st.pyplot(fig1)
+    # Set the title
+    ax.set_title(attractor + " Attractor")
+
+    # Display the scatter plot
+    st.pyplot(fig1)
 
 # Create a Streamlit figure and plot the data
 fig, ax = plt.subplots()
-ax.set_title('Aizawa attractor path')
+ax.set_title(attractor + " Attractor Path")
 ax.set_xlabel('x')
-ax.set_ylabel('y')
+ax.set_ylabel('z')
 
 # Set the fixed maximum x and y limits
 max_x = np.max(xs)
@@ -184,8 +190,10 @@ ax.set_ylim(-max_y, max_y)
 # Create a placeholder for the plot
 plot_placeholder = st.empty()
 
+st.write('''Now to witness the movement of the algorithm through a robotic demonstration hit Print!''')
+
 # Create a button
-button_pressed = st.button('Start Animation')
+button_pressed = st.button('Print')
 
 if button_pressed:
     getPoints('SVG/Chaos1.svg',points)
