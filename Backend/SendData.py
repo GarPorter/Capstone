@@ -130,3 +130,7 @@ def getPoints(fileName, param=0):
     elif 'Shapes' in fileName:
         points=transform(param)
         sendToRPI(points)
+    elif 'Chaos1' in fileName:
+        points=param
+        sendToRPI(points)
+        return points
