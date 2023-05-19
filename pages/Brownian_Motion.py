@@ -115,3 +115,9 @@ if clicked:
   st.pyplot(fig)
 
 plt.close()
+
+st.subheader('Image Sources')
+st.write('''
+- https://i.pinimg.com/originals/15/38/66/153866beb99a7ec456ae1e6b0d643aea.gif
+- https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Brownian_motion_large.gif/220px-Brownian_motion_large.gif
+''')
