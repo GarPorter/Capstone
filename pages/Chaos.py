@@ -117,7 +117,7 @@ xs, ys, zs = simulate_chaos(attractor_function, steps, dt)
 points = []
 
 #target is a 15 x 15 box
-scale = 15/np.max(np.abs([xs, ys]))
+scale = 15/np.max(np.abs([xs, zs]))
 total_dist = 0
 for i in range(len(xs) - 1):
     xs[i] = scale*xs[i]
@@ -126,12 +126,12 @@ for i in range(len(xs) - 1):
 for i in range(len(xs) - 1):
     # Calculate the distance in x and y
     dx = xs[i+1] - xs[i]
-    dy = ys[i+1] - ys[i]
+    dy = zs[i+1] - zs[i]
     distanceBetweenPoints = np.sqrt((dx)**2 + (dy)**2) #in cm
     if i == 1:
-        points.append((xs[i], ys[i]))
+        points.append((xs[i], zs[i]))
     if total_dist > 0.5:
-        points.append((xs[i], ys[i]))
+        points.append((xs[i], zs[i]))
         total_dist = 0
     else:
         total_dist += distanceBetweenPoints
@@ -153,7 +153,7 @@ st.pyplot(fig)
 fig1, ax = plt.subplots()
 
 # Plot the scatter plot
-scatter = ax.scatter(xs, ys, c=zs, cmap='inferno', s=1)
+scatter = ax.scatter(xs, zs, c=zs, cmap='inferno', s=1)
 
 # Set the axis limits
 ax.set_xlim(np.min(xs), np.max(xs))
@@ -177,7 +177,7 @@ ax.set_ylabel('y')
 
 # Set the fixed maximum x and y limits
 max_x = np.max(xs)
-max_y = np.max(ys)
+max_y = np.max(zs)
 ax.set_xlim(-max_x, max_x)
 ax.set_ylim(-max_y, max_y)
 
@@ -188,7 +188,7 @@ plot_placeholder = st.empty()
 button_pressed = st.button('Start Animation')
 
 if button_pressed:
-    getpoints('SVG/Chaos1.svg',points)
+    getPoints('SVG/Chaos1.svg',points)
     for i in range(len(points)):
         ax.cla()  # Clear the previous plot
         ax.set_xlim(-max_x, max_x)  # Set x limits
