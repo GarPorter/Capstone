@@ -131,5 +131,5 @@ def getPoints(fileName, param=0):
         points=transform(param)
         # sendToRPI(points)
     elif 'Chaos1' in fileName:
-        points = transform(param)
+        points = transform([param])
         return points
