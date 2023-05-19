@@ -210,3 +210,6 @@ if button_pressed:
         ax.plot(current_edge_x, current_edge_y, 'ro')
         plot_placeholder.pyplot(fig)
     plt.close(fig)
+
+st.subheader("References")
+st.write('https://www.dynamicmath.xyz/strange-attractors/')
