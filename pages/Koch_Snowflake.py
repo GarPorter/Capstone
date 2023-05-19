@@ -17,6 +17,12 @@ The math behind the Koch snowflake involves a few key concepts, including self-s
    iteration means that the snowflake can be infinitely detailed, with an infinite perimeter
     but a finite area.''')
 
+st.header('Examples')
+l, r = st.columns([5, 5])
+with l:
+    st.image('Images/snowflake_example.jpg', 'Snowflake')
+with r:
+    st.image('Images/koch_example.jpg', '3D Koch Example')
 st.header('Application')
 st.write('''
 The Koch snowflake can be applied in the real world in a variety of ways, including
@@ -82,4 +88,9 @@ st.write('''
 - https://www.nointrigue.com/docs/notes/uni/tspwater/mytalk.pdf
 - https://sites.google.com/a/maret.org/advanced-math-7-final-project-2014/architecture-and-arts/fractals-koch-snowflake
 - https://www.ijert.org/research/analysis-of-koch-snowflake-fractal-antenna-for-multiband-application-IJERTV3IS041857.pdf
+''')
+
+st.subheader('Image Sources')
+st.write('''
+- https://qph.cf2.quoracdn.net/main-qimg-ceb1fbf8ea7b6d2010a2bf6e93d85846-lq
 ''')
