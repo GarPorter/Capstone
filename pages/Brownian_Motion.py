@@ -8,6 +8,12 @@ st.write('''Brownian motion aims to quantify the random motion of particles
             suspended in a medium. Utilizing Gaussian distribution we can track
             the motion of a particle through a medium''')
 
+st.header('Examples')
+l, r = st.columns([5, 5])
+with l:
+  st.image('Images/brownian_example.gif', 'The Motion of a Particle')
+with r:
+  st.image('Images/brownian2_example.gif', 'Brownian Animation')
 
 st.write('''When a computer randomly generates numbers, they aren't exactly random.
             The computer looks at something called a Gaussian distribution in order
