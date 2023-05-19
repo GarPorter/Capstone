@@ -12,6 +12,13 @@ curve consists of a series of alternating segments, each of which is a quarter o
 depending on the desired frequency of operation. In this example, the curve intersects
 a horizontal line n times and is self avoiding (ie. does not intersect itself).''')
 
+st.header('Examples')
+l, r = st.columns([5,5])
+with l:
+  st.image('Images/meander_example.jpg', 'Meandering River')
+with r:
+  st.image('Images/meander2_example.jpg', 'Hybrid Meander Structure')
+
 st.header('Application')
 st.write('''
 The alternating segments of the open meander curve create a pattern that appears to
@@ -85,4 +92,10 @@ st.write('''
 - https://iopscience.iop.org/article/10.7567/JJAP.52.05DC08
 - https://www.researchgate.net/figure/Parasitic-capacitances-in-meander-lines_fig8_224610758
 - https://ieeexplore.ieee.org/document/6545045
+''')
+
+st.subheader('Image Sources')
+st.write('''
+- https://www.nps.gov/common/uploads/stories/images/nri/20161208/articles/C04A2B82-1DD8-B71B-0B670854A934F77D/C04A2B82-1DD8-B71B-0B670854A934F77D.jpg
+- https://pub.mdpi-res.com/electronics/electronics-10-01583/article_deploy/html/images/electronics-10-01583-g003.png?1625111215
 ''')
