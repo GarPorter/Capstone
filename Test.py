@@ -19,7 +19,9 @@ show_pages(
         Page("pages/Fractals.py", "Fractals", ":herb:"),
         Page("pages/Tree.py", "Tree", ":maple_leaf:"),
         Page("pages/Chaos.py", "Chaos", ":milky_way:"),
-        Page("pages/Fibonacci.py", "Fibonacci", ":sunflower:")
+        Page("pages/Fibonacci.py", "Fibonacci", ":shell:"),
+        Page("pages/Modulo_Graphics.py", "Modulo Graphics", ":cyclone:"),
+        Page("pages/Golden_Spiral.py", "Golden Spiral", ":sunflower:")
     ]
 )
 

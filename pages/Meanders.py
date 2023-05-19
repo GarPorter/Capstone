@@ -12,7 +12,7 @@ curve consists of a series of alternating segments, each of which is a quarter o
 depending on the desired frequency of operation. In this example, the curve intersects
 a horizontal line n times and is self avoiding (ie. does not intersect itself).''')
 
-st.subheader('Application')
+st.header('Application')
 st.write('''
 The alternating segments of the open meander curve create a pattern that appears to
 "meander" or zigzag back and forth along the length of the curve. This pattern
@@ -30,7 +30,7 @@ plt.yticks([])
 if 'start_text' not in st.session_state:
   st.session_state.start_text=ax.text(0, 0, 'start')
 
-st.subheader('Try it Yourself!')
+st.header('Try it Yourself!')
 pt = st.slider("Number of Points", 2, 10, 3)
 
 c1, c2 = st.columns([9, 1])
@@ -63,7 +63,7 @@ with c1:
     st.write(plot)
 
 if clicked:
-  st.subheader('The Path being Printed')
+  st.header('The Path being Printed')
   st.write('''Below are the points constituting the path being transmitted to the robot, starting from the red dot.
             The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
             However, due to the robot's linear interpolation between the points, there may be slight discrepancies
