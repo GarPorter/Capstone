@@ -13,7 +13,15 @@ range formations and more! We can use this for engineering applications through 
 
 In a Voronoi pattern, every point within a given region is closer to the “seed” inside that region than it is
 to any other point outside that region. Each point along a region's edge is equidistant from the two nearest seeds.
+""")
 
+st.header('Examples')
+l, r = st.columns([5, 5])
+with l:
+  st.image('Images/voronoi_example.png', 'Spots on Giraffe')
+with r:
+  st.image('Images/voronoi2_example.jpg', 'Dragonfly Wings')
+st.write("""
 Try setting the amount of seeds to set up a map and see what happens!
 
 _Notes: Dashed lines indicate infinitely long boundaries and will not be printed_
@@ -96,3 +104,9 @@ plt.close()
 st.write("""
 In this map, the seeds are represented by blue dots, the edges are outlined in black and the vertices are highlighted in orange.
 """)
+
+st.subheader('Image Sources')
+st.write('''
+- https://virtuosity.bentley.com/wp-content/uploads/2020/11/Voronoi-Diagram-GenerativeComponents-KB.png
+- https://i.pinimg.com/originals/7f/03/b1/7f03b13acda415a024b481480f63e38e.jpg
+''')
