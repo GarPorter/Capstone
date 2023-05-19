@@ -17,7 +17,6 @@ show_pages(
         Page("pages/Voronoi_script.py", "Voronoi", ":world_map:"),
         Page("pages/Meanders.py", "Meanders", ":desert_island:"),
         Page("pages/Fractals.py", "Fractals", ":herb:"),
-        #Page("pages/Tree.py", "Tree", ":maple_leaf:"),
         Page("pages/Chaos.py", "Chaos", ":milky_way:"),
         Page("pages/Fibonacci.py", "Fibonacci", ":shell:"),
         Page("pages/Modulo_Graphics.py", "Modulo Graphics", ":cyclone:"),
@@ -54,3 +53,5 @@ st.write('''In order to be able to print:
 
 Note: You can adjust the size of the print by scaling the points in the Transform function in `Backend/SendData.py`
 ''')
+
+#Page("pages/Tree.py", "Tree", ":maple_leaf:"),
