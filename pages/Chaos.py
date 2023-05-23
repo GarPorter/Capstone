@@ -119,6 +119,8 @@ points = []
 
 #target is a 15 x 15 box
 scale = 15/np.max(np.abs([xs, zs]))
+xs = scale*xs
+zs = scale*zs
 
 # Plot the results
 fig, ax = plt.subplots(figsize=(10,10))
@@ -126,17 +128,14 @@ ax.set_xlabel("X")
 ax.set_ylabel("Y")
 ax.set_title(attractor + " Attractor")
 
-ax.plot(scale*xs, scale*zs, lw=0.5, color='purple')
+ax.plot(xs, zs, lw=0.5, color='purple')
 plt.show()
 
 st.pyplot(fig)
 
 
+#Generate the path
 total_dist = 0
-for i in range(len(xs) - 1):
-    xs[i] = scale*xs[i]
-    ys[i] = scale*ys[i]
-    zs[i] = scale*zs[i]
 for i in range(len(xs) - 1):
     # Calculate the distance in x and y
     dx = xs[i+1] - xs[i]
