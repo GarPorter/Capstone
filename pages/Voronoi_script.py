@@ -88,10 +88,7 @@ with c1:
   canvas.pyplot(fig)
   plt.close(fig)
 
-if st.button('Print'):
-  clicked = True
-  pointsArr = np.array(st.session_state.pointsArr)
-  vor = Voronoi(pointsArr)
+if clicked:
   st.header('The Path being Printed')
   st.write('''Below are the points constituting the path being transmitted to the robot, starting from the red dot.
             The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
