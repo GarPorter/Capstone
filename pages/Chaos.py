@@ -119,8 +119,8 @@ points = []
 
 #target is a 15 x 15 box
 scale = 15/np.max(np.abs([xs, zs]))
-xs = scale*xs + np.max(np.abs([xs, zs]))
-zs = scale*zs + np.max(np.abs([xs, zs]))
+xs = scale*xs + 15/np.max(np.abs([xs, zs]))
+zs = scale*zs + 15/np.max(np.abs([xs, zs]))
 
 # Plot the results
 fig, ax = plt.subplots(figsize=(10,10))
