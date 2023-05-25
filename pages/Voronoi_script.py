@@ -32,13 +32,6 @@ seedMax = 80
 seeds = st.slider("Enter the seeds in your map", 4, seedMax, 17)
 st.write("$s=$", seeds)
 
-#put points onto the map
-coordinates = []
-
-for i in range(seeds):
-    coordinates.append((random.uniform(0.0,0.5), random.uniform(0.0,0.5)))
-pointsArr = np.array(coordinates)
-
 #apply voronoi
 from scipy.spatial import Voronoi, voronoi_plot_2d
 
@@ -71,16 +64,34 @@ with c2:
 
 # Column containing plot.
 # Dsiplays old plot if button is clicked otherwise creates new plot
+# New block for interactive point placement
 with c1:
-  if clicked:
-    ax=st.session_state.fig.gca()
-    ax.scatter(points[0][0][0], points[0][0][1], c='red')
-    ax.text(points[0][0][0]-0.02, points[0][0][1]+0.01, 'Start', fontsize=12)
-    st.write(st.session_state.fig)
-  else:
-    st.write(fig)
+  canvas = st.canvas(width=600, height=600, key="canvas")
 
-if clicked:
+  if "pointsArr" not in st.session_state:
+    st.session_state.pointsArr = []
+
+  if canvas.mouse_up:
+    x = canvas.mouse_x / 600  # Scale mouse coordinates to match plot size
+    y = 1 - (canvas.mouse_y / 600)  # Invert y-axis to match plot orientation
+    st.session_state.pointsArr.append([x, y])
+
+  # Plot the points dynamically
+  fig, ax = plt.subplots()
+  ax.scatter(pointsArr[:, 0], pointsArr[:, 1], c='blue')
+  for i, (x, y) in enumerate(st.session_state.pointsArr):
+      ax.scatter(x, y, c='red')
+      ax.text(x-0.02, y+0.01, f"{i}", fontsize=12)
+  ax.set_xlim(0, 1)
+  ax.set_ylim(0, 1)
+  ax.set_aspect('equal')
+  canvas.pyplot(fig)
+  plt.close(fig)
+
+if st.button('Print'):
+  clicked = True
+  pointsArr = np.array(st.session_state.pointsArr)
+  vor = Voronoi(pointsArr)
   st.header('The Path being Printed')
   st.write('''Below are the points constituting the path being transmitted to the robot, starting from the red dot.
             The line(s) corresponds to the ideal pattern or path that should be followed to reproduce the desired drawing.
