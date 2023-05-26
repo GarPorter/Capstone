@@ -113,11 +113,12 @@ button_pressed = st.button('Robot path')
 coordinates = np.sort(coordinates)
 
 if button_pressed:
+    fig, ax = plt.subplots()  # Create the figure and axes here
     for i in range(len(coordinates)):
-        ax.cla()  # Clear the previous plot
-        ax.set_xlim(-np.abs(np.max(coordinates[:][0])), np.abs(np.max(coordinates[:][0])))  # Set x limits
-        ax.set_ylim(-np.abs(np.max(coordinates[:][1])), np.abs(np.max(coordinates[:][1])))  # Set y limits
-        ax.plot(coordinates[:i+1][0], coordinates[:i+1][1], color='blue', lw=0.5)
+        plt.clf()  # Clear the entire plot
+        ax.set_xlim(-np.abs(np.max(coordinates[:, 0])), np.abs(np.max(coordinates[:, 0])))  # Set x limits
+        ax.set_ylim(-np.abs(np.max(coordinates[:, 1])), np.abs(np.max(coordinates[:, 1])))  # Set y limits
+        ax.plot(coordinates[:i+1, 0], coordinates[:i+1, 1], color='blue', lw=0.5)
         # Get the current edge position
         current_edge_x = coordinates[i, 0]
         current_edge_y = coordinates[i, 1]
