@@ -118,7 +118,7 @@ xs, ys, zs = simulate_chaos(attractor_function, steps, dt)
 points = []
 
 #target is a 15 x 15 box
-scale = 15/np.max(np.abs([xs, zs]))
+scale = 10/np.max(np.abs([xs, zs]))
 xs = scale*xs + scale*np.abs(np.min([xs]))
 zs = scale*zs + scale*np.abs(np.min([zs]))
 
