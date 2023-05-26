@@ -105,6 +105,28 @@ st.write("""
 In this map, the seeds are represented by blue dots, the edges are outlined in black and the vertices are highlighted in orange.
 """)
 
+# Create a placeholder for the plot
+plot_placeholder = st.empty()
+
+# Create a button
+button_pressed = st.button('Robot path')
+coordinates = np.sort(coordinates)
+
+if button_pressed:
+    for i in range(len(coordinates)):
+        ax.cla()  # Clear the previous plot
+        ax.set_xlim(-np.abs(np.max(coordinates[:][0])), np.abs(np.max(coordinates[:][0])))  # Set x limits
+        ax.set_ylim(-np.abs(np.max(coordinates[:][1])), np.abs(np.max(coordinates[:][1])))  # Set y limits
+        ax.plot(coordinates[:i+1][0], coordinates[:i+1][1], color='blue', lw=0.5)
+        # Get the current edge position
+        current_edge_x = coordinates[i, 0]
+        current_edge_y = coordinates[i, 1]
+
+        # Plot a red dot at the current edge position
+        ax.plot(current_edge_x, current_edge_y, 'ro')
+        plot_placeholder.pyplot(fig)
+    plt.close(fig)
+
 st.subheader('Image Sources')
 st.write('''
 - https://virtuosity.bentley.com/wp-content/uploads/2020/11/Voronoi-Diagram-GenerativeComponents-KB.png
