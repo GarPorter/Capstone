@@ -105,43 +105,6 @@ st.write("""
 In this map, the seeds are represented by blue dots, the edges are outlined in black and the vertices are highlighted in orange.
 """)
 
-# Remove this block
-coordinates_new = []
-
-seeds1 = st.slider("How many seeds would you like to place?", 4, seedMax, 17)
-
-for i in range(seeds1):
-    coordinates_new.append((random.uniform(0.0,0.5), random.uniform(0.0,0.5)))
-pointsArr = np.array(coordinates_new)
-
-c3, c4 = st.columns([9, 1])
-clicked=False
-
-# New block for interactive point placement
-with c3:
-  canvas = st.canvas(width=600, height=600, key="canvas")
-
-  if "pointsArr" not in st.session_state:
-    st.session_state.pointsArr = []
-
-  if canvas.mouse_up:
-    x = canvas.mouse_x / 600  # Scale mouse coordinates to match plot size
-    y = 1 - (canvas.mouse_y / 600)  # Invert y-axis to match plot orientation
-    st.session_state.pointsArr.append([x, y])
-
-  # Plot the points dynamically
-  fig, ax = plt.subplots()
-  ax.scatter(pointsArr[:, 0], pointsArr[:, 1], c='blue')
-  for i, (x, y) in enumerate(st.session_state.pointsArr):
-      ax.scatter(x, y, c='red')
-      ax.text(x-0.02, y+0.01, f"{i}", fontsize=12)
-  ax.set_xlim(0, 1)
-  ax.set_ylim(0, 1)
-  ax.set_aspect('equal')
-  canvas.pyplot(fig)
-  plt.close(fig)
-
-
 st.subheader('Image Sources')
 st.write('''
 - https://virtuosity.bentley.com/wp-content/uploads/2020/11/Voronoi-Diagram-GenerativeComponents-KB.png
