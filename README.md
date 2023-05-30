@@ -30,3 +30,7 @@ Note: You may need to adjust the port argument in the `bot.motorRun(port, speed)
 Use the follow graphic as a reference:
 
 ![MegaPi Board Ports](https://github.com/GarPorter/Capstone/blob/Streamlit/Images/megapi.jpg?raw=true)
+
+## Capstone Poster
+
+![Capstone Poster](https://github.com/GarPorter/Capstone/blob/Streamlit/Images/Capstone_Poster_JPEG.jpg)
