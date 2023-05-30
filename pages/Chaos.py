@@ -119,11 +119,23 @@ points = []
 
 #target is a 15 x 15 box
 scale = 10/np.max(np.abs([xs, zs]))
+xs = scale*xs + scale*np.abs(np.min([xs]))
+zs = scale*zs + scale*np.abs(np.min([zs]))
+
+# Plot the results
+fig, ax = plt.subplots(figsize=(10,10))
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_title(attractor + " Attractor")
+
+ax.plot(xs, zs, lw=0.5, color='purple')
+plt.show()
+
+st.pyplot(fig)
+
+
+#Generate the path
 total_dist = 0
-for i in range(len(xs) - 1):
-    xs[i] = scale*xs[i]
-    ys[i] = scale*ys[i]
-    zs[i] = scale*zs[i]
 for i in range(len(xs) - 1):
     # Calculate the distance in x and y
     dx = xs[i+1] - xs[i]
@@ -138,17 +150,6 @@ for i in range(len(xs) - 1):
         total_dist += distanceBetweenPoints
 
 path = [points]
-
-# Plot the results
-fig, ax = plt.subplots(figsize=(10,10))
-ax.set_xlabel("X")
-ax.set_ylabel("Y")
-ax.set_title(attractor + " Attractor")
-
-ax.plot(xs, zs, lw=0.5, color='purple')
-plt.show()
-
-st.pyplot(fig)
 
 st.write('''Our robot takes in a data set of the path you want it to follow, hit the following button to create the dataset.''')
 
