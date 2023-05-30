@@ -118,7 +118,7 @@ xs, ys, zs = simulate_chaos(attractor_function, steps, dt)
 points = []
 
 #target is a 15 x 15 box
-scale = 15/np.max(np.abs([xs, zs]))
+scale = 10/np.max(np.abs([xs, zs]))
 total_dist = 0
 for i in range(len(xs) - 1):
     xs[i] = scale*xs[i]
@@ -197,7 +197,7 @@ button_pressed = st.button('Print')
 
 if button_pressed:
     getPoints('SVG/Chaos1.svg',path)
-    for i in range(len(path)):
+    for i in range(len(path)-1):
         ax.cla()  # Clear the previous plot
         ax.set_xlim(-max_x, max_x)  # Set x limits
         ax.set_ylim(-max_y, max_y)  # Set y limits

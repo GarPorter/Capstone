@@ -132,7 +132,7 @@ try:
 	# Using Bluetooth Connection
 	while True:
 		mac='08:BE:AC:35:8A:B4'
-		port=1
+		port=2
 		points=[]
 		with socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM) as s:
 			s.bind((mac, port))

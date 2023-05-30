@@ -68,6 +68,8 @@ def brownianMotion(modA):
 figure3, axes3 = plt.subplots()
 x2=brownianMotion(modA)
 y2=brownianMotion(modA)
+plt.xticks([])
+plt.yticks([])
 plt.plot(x2,y2)
 plt.plot(x2[0],y2[0], 'ro')
 

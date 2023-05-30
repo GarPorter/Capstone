@@ -16,8 +16,8 @@ import subprocess
 # Param points: list
 def sendToRPI(points):
     '''Using Bluetooth Connection'''
-    # mac="B8:27:EB:8A:F5:2A" # RPI 3B
-    mac="08:BE:AC:35:8A:B4" # RPI 2 B8:27:EB:AE:2B:63
+    mac="B8:27:EB:8A:F5:2A" # RPI 3B
+    #mac="08:BE:AC:35:8A:B4" # RPI 2
     port = 2
     with socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM) as s:
         s.connect((mac,port))
@@ -115,6 +115,7 @@ def getPoints(fileName, param=0):
         return points
     elif 'Fib' in fileName:
         points=transform([param])
+        print(points)
         sendToRPI(points)
         return points
     elif 'Lissajous' in fileName:
@@ -131,5 +132,5 @@ def getPoints(fileName, param=0):
         points=transform(param)
         sendToRPI(points)
     elif 'Chaos1' in fileName:
-        points=param
+        points=transform(param)
         sendToRPI(points)

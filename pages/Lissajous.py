@@ -6,7 +6,7 @@ from Backend.SendData import *
 from Backend.SvgToPoints import *
 
 st.title("Lissajous Curve")
-
+st.write('Description')
 
 Moda = st.slider("Pick Value for a", 1, 10, 3, key = "<one>")
 Modb = st.slider("Pick Value for b", 1, 10, 3, key = "<two>")

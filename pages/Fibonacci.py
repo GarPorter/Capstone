@@ -170,15 +170,15 @@ with c2:
   ''
   ''
   # Convert matplotlib patches to array of points
-  if st.button('Print'):
-    clicked=True
-    points = []
-    for patch in patches:
-      vertices = patch.get_verts()
-      for vertex in vertices[:-1]:
-        points.append((round(vertex[0], 2), round(vertex[1], 2)))
-    points=getPoints('Fib', points)
-    st.balloons()
+  # if st.button('Print'):
+  #   clicked=True
+  #   points = []
+  #   for patch in patches:
+  #     vertices = patch.get_verts()
+  #     for vertex in vertices[:-1]:
+  #       points.append((round(vertex[0], 2), round(vertex[1], 2)))
+  #   points=getPoints('Fib', points)
+  #   st.balloons()
 
 if clicked:
   st.header('The Path being Printed')
