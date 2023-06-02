@@ -34,3 +34,4 @@ Use the follow graphic as a reference:
 ## Capstone Poster
 
 ![Capstone Poster](https://github.com/GarPorter/Capstone/blob/Streamlit/Images/Capstone_Poster_JPEG.jpg)
+[PDF Copy](https://github.com/GarPorter/Capstone/blob/Streamlit/Images/Capstone_Poster_2023.pptx.pdf)
