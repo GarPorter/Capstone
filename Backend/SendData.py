@@ -1,20 +1,27 @@
-from Backend.SvgToPoints import *
 import socket
 import pickle
 import subprocess
+from Backend.SvgToPoints import *
 
-# # Gets IP address of RPI from MAC address of RPI
-# # Returns IP address
 # def getIp():
+#     """Gets the IP of the RPI based on the MAC address
+
+#     Returns:
+#         string: IP address
+#     """
 #     cmd = 'arp -a | findstr "B8-27-EB-8A-F5-2A" ' # Mac Address after findstr
 #     returned_output = subprocess.check_output((cmd),shell=True,stderr=subprocess.STDOUT)
 #     parse=str(returned_output).split(' ',1)
 #     ip=parse[1].split(' ')
 #     return ip[1]
 
-# Sends array of points to RPI robot through IP host
-# Param points: list
-def sendToRPI(points):
+def send_to_rpi(points):
+    """Sends array of points to RPI robot through Bluetooth socket
+
+    Args:
+        points (2D list): the coordinates of points in the pattern
+    """
+
     '''Using Bluetooth Connection'''
     mac="B8:27:EB:8A:F5:2A" # RPI 3B
     #mac="08:BE:AC:35:8A:B4" # RPI 2
@@ -35,26 +42,43 @@ def sendToRPI(points):
     #     data = pickle.dumps(points)
     #     s.sendall(data)
 
-# Remove duplicates from list but keep order
-# Param seq: list
-# Returns list
 def oset(seq):
-  seen = set()
-  seen_add = seen.add
-  return [x for x in seq if not (x in seen or seen_add(x))]
+    """Removes duplicates from a list but keeps the same order
 
-# Removes duplicates list from a list of lists
-# Param list list_of_lists
-# Returns list unique_lists
+    Args:
+        seq (list): original list
+
+    Returns:
+        list: list without duplicates
+    """
+    seen = set()
+    seen_add = seen.add
+    return [x for x in seq if not (x in seen or seen_add(x))]
+
 def rdl(list_of_lists):
-  unique_lists = []
-  for l in list_of_lists:
-      if l not in unique_lists:
-          unique_lists.append(l)
-  return unique_lists
+    """Removes duplicate lists from a 2D list
 
-# Transforms points to start at origin and scale to set range
+    Args:
+        list_of_lists (2D list): original list
+
+    Returns:
+        2D list: updated 2D list without duplicate lists
+    """
+    unique_lists = []
+    for l in list_of_lists:
+        if l not in unique_lists:
+            unique_lists.append(l)
+    return unique_lists
+
 def transform(oldPoints):
+    """Transforms points to start at origin and scale to set domain
+
+    Args:
+        oldPoints (2D list): original points
+
+    Returns:
+        2D list: transformed points
+    """
     points=[]
     newPoints=[]
     maxmax=0
@@ -75,18 +99,23 @@ def transform(oldPoints):
         newPoints.append(newPath)
     return newPoints
 
-
-# Covers SVG file to array of points
-# Param fileName: string
-# Param param: extra parameter if needed to be sent from page
 def getPoints(fileName, param=0):
+    """Distinguishes between patterns and sends appropriate points to RPI
+
+    Args:
+        fileName (string): the SVG file path of pattern
+        param (int, optional): extra parameter if needed for some patterns. Defaults to 0.
+
+    Returns:
+        2D list: transformed points that are sent to RPI
+    """
     points=[]
     if 'Meander' in fileName:
         oldPoints = svg_to_points(fileName)[2:-6]
         for path in oldPoints:
             points.append(oset(path))
         points=transform(points)[:-1]
-        sendToRPI(points)
+        send_to_rpi(points)
         return points
     elif 'Brownian' in fileName:
         oldPoints = svg_to_points(fileName)
@@ -94,7 +123,7 @@ def getPoints(fileName, param=0):
             if len(path) == param*2-2: # Find Correct path; Param = Modb
                 points.append(oset(path))
         points=transform(points)
-        sendToRPI(points)
+        send_to_rpi(points)
         return points
     elif 'Sierpinski' in fileName:
         oldPoints = svg_to_points(fileName)
@@ -103,34 +132,33 @@ def getPoints(fileName, param=0):
             path=[path[0], path[1], path[4], path[5]]
             points.append(path)
         points=transform(points)
-        sendToRPI(points)
+        send_to_rpi(points)
         return points
     elif 'Koch' in fileName:
         oldPoints = svg_to_points(fileName)[2:-5]
         oldPoints = oset(oldPoints[0])
-        points=oldPoints[(len(oldPoints)+1)//2:]+oldPoints[:(len(oldPoints)+1)//2]
+        points=oldPoints[(len(oldPoints)+1)//2:]+oldPoints[:(len(oldPoints)+1)//2] # start at bottom rather than top
         points.append(points[0])
         points=transform([points])
-        sendToRPI(points)
+        send_to_rpi(points)
         return points
     elif 'Fib' in fileName:
         points=transform([param])
-        print(points)
-        sendToRPI(points)
+        # send_to_rpi(points) # doesnt work correctly currently
         return points
     elif 'Lissajous' in fileName:
         points = svg_to_points(fileName)[2]
         points = [oset(points)]
         points=transform(points)
-        sendToRPI(points)
+        send_to_rpi(points)
         return points
     elif 'Voronoi' in fileName:
         points=transform(param)
-        sendToRPI(points)
+        send_to_rpi(points)
         return points
     elif 'Shapes' in fileName:
         points=transform(param)
-        sendToRPI(points)
+        send_to_rpi(points)
     elif 'Chaos1' in fileName:
         points=transform(param)
-        sendToRPI(points)
+        send_to_rpi(points)
