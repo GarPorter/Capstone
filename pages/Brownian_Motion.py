@@ -11,9 +11,9 @@ st.write('''Brownian motion aims to quantify the random motion of particles
 st.header('Examples')
 l, r = st.columns([5, 5])
 with l:
-  st.image('Images/brownian_example.gif', 'The Motion of a Particle')
+    st.image('Images/brownian_example.gif', 'The Motion of a Particle')
 with r:
-  st.image('Images/brownian2_example.gif', 'Brownian Animation')
+    st.image('Images/brownian2_example.gif', 'Brownian Animation')
 
 st.write('''When a computer randomly generates numbers, they aren't exactly random.
             The computer looks at something called a Gaussian distribution in order
@@ -54,10 +54,15 @@ st.write('''What if we want the particle to move in a random direction continuou
             to take a 'step' in that direction.''')
 
 def brownianMotion(modA):
-    '''simulate and return an array of random "steps"
-    according to brownian motion theory
+    """simulate and return an array of random "steps"
+      according to brownian motion theory
 
-    '''
+    Args:
+        modA (int): steps in brownian motion theory
+
+    Returns:
+        np.array: array of brownian motion random coordinates
+    """
     timeSteps = np.linspace(0, 10, modA)
     dt = timeSteps[1] - timeSteps[0]
     diffBrown = np.sqrt(dt) * np.random.normal(0, dt, modA-1)
@@ -83,38 +88,39 @@ with c2:
   ''
   ''
   if st.button('Print'):
-    clicked = True
-    st.session_state.figure3.savefig('SVG/Brownian.svg', format='svg', dpi=100)
-    points = getPoints('SVG/Brownian.svg', modA)
-    st.balloons()
+      clicked = True
+      st.session_state.figure3.savefig('SVG/Brownian.svg', format='svg', dpi=100)
+      points = getPoints('SVG/Brownian.svg', modA)
+      st.balloons()
   else:
-    st.session_state.figure3 = figure3
+      st.session_state.figure3 = figure3
 
 # Column containing plot.
 # Dsiplays old plot if button is clicked otherwise creates new plot
 with c1:
-  if clicked:
-    st.write(st.session_state.figure3)
-  else:
-    st.write(figure3)
+    if clicked:
+        st.write(st.session_state.figure3)
+    else:
+        st.write(figure3)
 
 if clicked:
-  st.header('The Path being Printed')
-  st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
-            The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
-            However, due to the robot's linear interpolation between the points, there may be slight discrepancies
-            between the exact pattern and the actual drawing.''')
-  # Plot points
-  fig, ax = plt.subplots()
-  plt.xticks([])
-  plt.yticks([])
-  for path in points:
-      x, y = zip(*path)
-      ax.plot(x, y)
-      ax.scatter(x, y)
-  ax.scatter(x[0], y[0], c='red', zorder=10)
-  ax.set_aspect('equal')
-  st.pyplot(fig)
+    st.header('The Path being Printed')
+    st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
+              The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
+              However, due to the robot's linear interpolation between the points, there may be slight discrepancies
+              between the exact pattern and the actual drawing.''')
+
+    # Plot points
+    fig, ax = plt.subplots()
+    plt.xticks([])
+    plt.yticks([])
+    for path in points:
+        x, y = zip(*path)
+        ax.plot(x, y)
+        ax.scatter(x, y)
+    ax.scatter(x[0], y[0], c='red', zorder=10)
+    ax.set_aspect('equal')
+    st.pyplot(fig)
 
 plt.close()
 

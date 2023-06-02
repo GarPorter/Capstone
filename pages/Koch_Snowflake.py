@@ -65,22 +65,23 @@ with c1:
     st.write(plot)
 
 if clicked:
-  st.subheader('The Path being Printed')
-  st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
-            The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
-            However, due to the robot's linear interpolation between the points, there may be slight discrepancies
-            between the exact pattern and the actual drawing.''')
-  # Plot points
-  fig, ax = plt.subplots()
-  plt.xticks([])
-  plt.yticks([])
-  for path in points:
-      x, y = zip(*path)
-      ax.plot(x, y)
-      ax.scatter(x, y)
-  ax.scatter(x[0], y[0], c='red', zorder=10)
-  ax.set_aspect('equal')
-  st.pyplot(fig)
+    st.subheader('The Path being Printed')
+    st.write('''Below are the points constituting the path(s) being transmitted to the robot, starting from the red dot.
+                The line(s) corresponds to the ideal pattern or path(s) that should be followed to reproduce the desired drawing.
+                However, due to the robot's linear interpolation between the points, there may be slight discrepancies
+                between the exact pattern and the actual drawing.''')
+
+    # Plot points
+    fig, ax = plt.subplots()
+    plt.xticks([])
+    plt.yticks([])
+    for path in points:
+        x, y = zip(*path)
+        ax.plot(x, y)
+        ax.scatter(x, y)
+    ax.scatter(x[0], y[0], c='red', zorder=10)
+    ax.set_aspect('equal')
+    st.pyplot(fig)
 
 st.subheader('References')
 st.write('''

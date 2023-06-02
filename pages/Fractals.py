@@ -14,19 +14,59 @@ Take a chance and try it out for yourself!
 colorUser = st.color_picker('Pick A Color for your fern', '#00f900')
 
 def stem(x,y):
+    """Creates the stem function
+
+    Args:
+        x (float): x-coordinates
+        y (float): y-coordinates
+
+    Returns:
+        function: stem function
+    """
     return (0., 0.16*y)
 def leaflets(x,y):
+    """Creates the leaflets function
+
+    Args:
+        x (float): x-coordinates
+        y (float): y-coordinates
+
+    Returns:
+        function: leaflets function
+    """
     return(0.85*x + 0.04*y, -0.04*x + 0.85*y + 1.6)
 def largeLeft(x,y):
+    """Creates the large left leaf function
+
+    Args:
+        x (float): x-coordinates
+        y (float): y-coordinates
+
+    Returns:
+        function: large left function
+    """
     return(0.2*x - 0.26*y, 0.23*x + 0.22*y + 1.6)
 def largeRight(x,y):
+    """Creates the large right leaf function
+
+    Args:
+        x (float): x-coordinates
+        y (float): y-coordinates
+
+    Returns:
+        function: large right function
+    """
     return(-0.15*x + 0.28*y, 0.26*x + 0.24*y + 0.44)
+
 functions = [stem, leaflets, largeLeft, largeRight]
+
 st.write('How much transformations do you want your leaf to undergo?')
+
 iterations = st.slider('Iterations?', 100, 100000, 50000)
 x, y = 0, 0
 x_list = []
 y_list = []
+
 for i in range(iterations):
     function = np.random.choice(functions, p=[0.02, 0.84, 0.07, 0.07])
     x, y = function(x, y)

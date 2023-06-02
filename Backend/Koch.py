@@ -14,7 +14,7 @@ def koch_snowflake(order, scale=10):
             order (int): the recursion depth
 
         Returns:
-            np.ndarray: An array of complex numbers representing the coordinates of the Koch snowflake.
+            np.array: An array of complex numbers representing the coordinates of the Koch snowflake.
         """
         if order == 0:
             # initial triangle

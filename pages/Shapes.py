@@ -1,7 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-from Backend.Shape_Dict import shape_options
 import math
+from Backend.Shape_Dict import shape_options
 from Backend.SendData import getPoints
 
 st.title('Simple Shapes')
@@ -16,17 +16,27 @@ By demonstrating the precise movements and agility of our robot with these basic
 ''')
 
 def gen_ellipse (radius_x, radius_y, num_points=50):
-  coordinates = []
-  angle = 0
-  angle_increment = 2 * math.pi / num_points
+    """Generates points for an ellipse
 
-  for _ in range(num_points):
-    x = radius_x * math.cos(angle)
-    y = radius_y * math.sin(angle)
-    coordinates.append((x, y))
-    angle += angle_increment
+    Args:
+        radius_x (int): radius in x-direction
+        radius_y (int): radius in y-direction
+        num_points (int, optional): number of points to generate in list. Defaults to 50.
 
-  return coordinates
+    Returns:
+        list: list of x, y coordinates as tuples
+    """
+    coordinates = []
+    angle = 0
+    angle_increment = 2 * math.pi / num_points
+
+    for _ in range(num_points):
+        x = radius_x * math.cos(angle)
+        y = radius_y * math.sin(angle)
+        coordinates.append((x, y))
+        angle += angle_increment
+
+    return coordinates
 
 fig, ax = plt.subplots()
 ax.axis('off')
@@ -38,38 +48,39 @@ shape = st.selectbox('Select a shape', [ 'Circle', 'Ellipse', 'Triangle', 'Recta
 points=[]
 
 if shape == 'Triangle':
-  ax.set_aspect('auto')
+    ax.set_aspect('auto')
+
 if shape == 'Ellipse':
-  x_radius = st.slider('x Radius', 1, 10, 5)
-  y_radius = st.slider('y Radius', 1, 10, 2)
-  points=[gen_ellipse(x_radius, y_radius)]
-  points[0].append(points[0][0])
-  plt.xlim(-12, 12)
-  plt.ylim(-12, 12)
+    x_radius = st.slider('x Radius', 1, 10, 5)
+    y_radius = st.slider('y Radius', 1, 10, 2)
+    points=[gen_ellipse(x_radius, y_radius)]
+    points[0].append(points[0][0])
+    plt.xlim(-12, 12)
+    plt.ylim(-12, 12)
 
 elif shape == 'Rectangle':
-  w = st.slider('Width', 1, 10, 4)
-  l = st.slider('Length', 1, 10, 3)
-  points = [[(0,0), (l, 0), (l, -w), (0, -w), (0,0)]]
-  plt.xlim(-1, 12)
-  plt.ylim(-12, 1)
+    w = st.slider('Width', 1, 10, 4)
+    l = st.slider('Length', 1, 10, 3)
+    points = [[(0,0), (l, 0), (l, -w), (0, -w), (0,0)]]
+    plt.xlim(-1, 12)
+    plt.ylim(-12, 1)
 else:
-  points = shape_options[shape]['points']
+    points = shape_options[shape]['points']
 
 for path in points:
-  x, y = zip(*path)
-  ax.scatter(x, y)
-  ax.plot(x, y)
-  ax.scatter(x[0], y[0], c='red', zorder=10)
+    x, y = zip(*path)
+    ax.scatter(x, y)
+    ax.plot(x, y)
+    ax.scatter(x[0], y[0], c='red', zorder=10)
 
 c1, c2 = st.columns([9, 1])
 
 with c1:
-  st.write(fig)
+    st.write(fig)
 with c2:
-  ''
-  ''
-  ''
-  if st.button('Print'):
-    getPoints('Shapes', points)
-    st.balloons()
+    ''
+    ''
+    ''
+    if st.button('Print'):
+        getPoints('Shapes', points)
+        st.balloons()
