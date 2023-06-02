@@ -1,17 +1,21 @@
 import numpy as np
 
 def koch_snowflake(order, scale=10):
-    """
-    Return two lists x, y of point coordinates of the Koch snowflake.
+    """Return two lists x, y of point coordinates of the Koch snowflake
 
-    Arguments
-    ---------
-    order : int
-        The recursion depth.
-    scale : float
-        The extent of the snowflake (edge length of the base triangle).
+    Args:
+        order (int): the recursion depth.
+        scale (int, optional): the extent of the snowflake. Defaults to 10.
     """
     def _koch_snowflake_complex(order):
+        """Returns list of coordinates corresponding to the Koch snowflake
+
+        Args:
+            order (int): the recursion depth
+
+        Returns:
+            np.ndarray: An array of complex numbers representing the coordinates of the Koch snowflake.
+        """
         if order == 0:
             # initial triangle
             angles = np.array([0, 120, 240]) + 90
