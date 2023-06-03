@@ -5,57 +5,83 @@ from Backend.SendData import getPoints
 
 # Source - https://www.dynamicmath.xyz/strange-attractors/
 
-# Current Issues:
-#       1.) The equation parameters (ie. alpha) can't be updated to the figure --> Nothing happens when moving the slider
-#       2.) Rucklidge equation isn't plotting, probably because the time step is too big or way too small
-#       3.) The Plot title is wrong (all titled Lorenz), need to update the respective titles later
-#       4.) The amount of options user has is overwhelming, maybe fix time step and number of steps to make it easier
-#       5.) Printing currently is not doing it right
-
-# Aizawa attractor function
-# needs scale of 10
+# Simulates a lorenz attractor function in 3 dimenstions
 def aizawa_attractor(x,y,z,a=0.95,b=0.7,c=0.6,d=3.5,e=0.25,f=0.1):
+    """
+    Computes the derivatives of the Aizawa system.
+
+    Args:
+        x (float): x-coordinate
+        y (float): y-coordinate
+        z (float): z-coordinate
+        a (float, optional): Parameter a. Defaults to 0.95.
+        b (float, optional): Parameter b. Defaults to 0.7.
+        c (float, optional): Parameter c. Defaults to 0.6.
+        d (float, optional): Parameter d. Defaults to 3.5.
+        e (float, optional): Parameter e. Defaults to 0.25.
+        f (float, optional): Parameter f. Defaults to 0.1.
+
+    Returns:
+        tuple: Tuple containing the derivatives dx/dt, dy/dt, dz/dt
+    """
     x_dot = (z-b)*x - d*y
     y_dot = x*d + (z-b)*y
     z_dot = c + a*z - (z*z*z)/3 - (x*x + y*y)*(1 + e*z) + f*z*(x*x*x)
     return x_dot, y_dot, z_dot
 
-# needs scale of 1/2
+# Simulates a lorenz attractor function in 3 dimenstions
 def lorenz_attractor(x, y, z, sigma=10., beta=2.67, rho=28.):
+    """
+    Computes the derivatives of the Lorenz system.
+
+    Args:
+        x (float): x-coordinate
+        y (float): y-coordinate
+        z (float): z-coordinate
+        sigma (float, optional): Parameter sigma. Defaults to 10.0.
+        beta (float, optional): Parameter beta. Defaults to 2.67.
+        rho (float, optional): Parameter rho. Defaults to 28.0.
+
+    Returns:
+        tuple: Tuple containing the derivatives dx/dt, dy/dt, dz/dt
+    """
     x_dot = sigma * (y - x)
     y_dot = x * (rho - z) - y
     z_dot = x * y - beta * z
     return x_dot, y_dot, z_dot
 
-def rossler_attractor(x, y, z, a=0.1, b=0.1, c=14.):
-    x_dot = -y - z
-    y_dot = x + a*y
-    z_dot = b + z*(x-c)
-    return x_dot, y_dot, z_dot
-
-# Thomas attractor function
+# Simulates a lorenz attractor function in 3 dimenstions
 def thomas_attractor(x,y,z, b=0.208186):
+    """
+    Computes the derivatives of the Thomas system.
+
+    Args:
+        x (float): x-coordinate
+        y (float): y-coordinate
+        z (float): z-coordinate
+        b (float, optional): Parameter b. Defaults to 0.208186.
+
+    Returns:
+        tuple: Tuple containing the derivatives dx/dt, dy/dt, dz/dt
+    """
     x_dot = np.sin(y) - b*x
     y_dot = np.sin(z) - b*y
     z_dot = np.sin(x) - b*z
     return x_dot, y_dot, z_dot
 
-#prefers to have the z axis displayed
-def three_scroll(x,y,z, a=32.48, b=45.84, c=1.18, d=0.13, e=0.57, f=14.7):
-    x_dot = a * (y - x) + d * x * z
-    y_dot = b * x - (x * z) + f * y
-    z_dot = c * z + x * y - e * x * x
-    return x_dot, y_dot, z_dot
-
-
-#def _attractor(x,y,z):
-#    x_dot =
-#    y_dot =
-#    z_dot =
-#    return x_dot, y_dot, z_dot
-
 # Computes results
 def simulate_chaos(attractor_function, steps=10000, dt=0.01):
+    """
+    Simulates the trajectory of a chaotic system.
+
+    Args:
+        attractor_function (function): Function defining the derivatives of the chaotic system
+        steps (int, optional): Number of simulation steps. Defaults to 10000.
+        dt (float, optional): Time step size. Defaults to 0.01.
+
+    Returns:
+        tuple: Tuple containing arrays of x, y, and z coordinates
+    """
     xs = np.empty(steps + 1)
     ys = np.empty(steps + 1)
     zs = np.empty(steps + 1)
@@ -96,13 +122,9 @@ attractor = st.selectbox(
     ("Lorenz", "Thomas", "Aizawa") #Rossler and Rucklidge out of order atm
 )
 
-# Set default parameters for each attractor
+# define attractor that you will use in the simulation
 if attractor == "Lorenz":
     attractor_function = lorenz_attractor
-elif attractor == "Rossler (Out of Order)":
-    attractor_function = rossler_attractor
-elif attractor == "Rucklidge":
-    attractor_function = three_scroll
 elif attractor == "Thomas":
     attractor_function = thomas_attractor
 elif attractor == "Aizawa":
@@ -117,7 +139,7 @@ xs, ys, zs = simulate_chaos(attractor_function, steps, dt)
 
 points = []
 
-#target is a 15 x 15 box
+#scale the data to fit your desired box
 scale = 10/np.max(np.abs([xs, zs]))
 xs = scale*xs + scale*np.abs(np.min([xs]))
 zs = scale*zs + scale*np.abs(np.min([zs]))
@@ -134,7 +156,8 @@ plt.show()
 st.pyplot(fig)
 
 
-#Generate the path
+#Generate the path that the robot will follow
+#   use the scalar distance between each point to deciced which data to transfer save in points array
 total_dist = 0
 for i in range(len(xs) - 1):
     # Calculate the distance in x and y
@@ -153,7 +176,7 @@ path = [points]
 
 st.write('''Our robot takes in a data set of the path you want it to follow, hit the following button to create the dataset.''')
 
-# Create a button
+# Create a button to show the points that are sent to the mbot
 button_pressed1 = st.button('Create Robot Path')
 if button_pressed1:
     # Create a figure and axis for the scatter plot
@@ -193,7 +216,7 @@ plot_placeholder = st.empty()
 
 st.write('''Now to witness the movement of the algorithm through a robotic demonstration hit Print!''')
 
-# Create a button
+# Create a button to send data to the raspberry pi through bluetooth connection
 button_pressed = st.button('Print')
 
 if button_pressed:
